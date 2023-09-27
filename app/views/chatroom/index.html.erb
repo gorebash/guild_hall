@@ -1,6 +1,6 @@
 <h4 class="ui center aligned medium icon header">
   <i class="circular orange coffee icon"></i>
-  Say Something
+  Guild Hall
 </h4>
 
 <div class="ui two column grid">
@@ -12,7 +12,6 @@
         </div>
       </div>
       <div class="extra content">
-        <% if false %>
         <%= form_for(@message, html: {class: "ui reply form", role: "form"}, url: message_path, remote: true) do |f| %>
           <div class="field">
             <div class="ui fluid icon input">
@@ -20,7 +19,6 @@
               <%= f.button '<i class="bordered inverted orange edit icon"></i>'.html_safe %>
             </div>
           </div>
-        <% end %>
         <% end %>
       </div>
     </div>
