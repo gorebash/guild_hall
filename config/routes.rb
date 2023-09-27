@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root 'chatroom#index'
-  get 'message#show'
+  post 'message', to: 'messages#create'
 end
