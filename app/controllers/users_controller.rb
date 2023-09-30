@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = "Welcome to the Guild Hall #{@user.username}, you successfully signed up"
-      redirect_to root_path
+      redirect_to chatroom_path
     else
       render :new, status: :unprocessable_entity
     end
