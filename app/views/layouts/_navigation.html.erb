@@ -1,7 +1,12 @@
-<%= link_to "Chatroom", root_path, class: "item" %>
+
+<div class="header item">The Guild Hall</div>
+
+<%= link_to "Chatroom", chatroom_path, class: "item" %>
+
 <a class="item">
   Messages
 </a>
+
 <div class="right menu">
   <% if logged_in? %>
     <div class="ui dropdown item">
