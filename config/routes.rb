@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
   root 'home#index'
 
   get 'chatroom', to: 'chatroom#index'
@@ -13,5 +12,6 @@ Rails.application.routes.draw do
 
   get 'signup', to: 'users#new'
   resources :users, except: [:new]
-  # post 'signup', to: 'users#create'
+
+  mount ActionCable.server, at: '/cable'
 end

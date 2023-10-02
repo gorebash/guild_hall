@@ -9,4 +9,8 @@ import "semantic-ui"
 $(document).on('turbo:load', function() {
   console.log('loaded turbo links')
   $('.ui.dropdown').dropdown()
+});import "channels"
+
+$("#new_message").on("submit", function () {
+  $("#new_message").submit();
 });
