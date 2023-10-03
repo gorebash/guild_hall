@@ -4,13 +4,27 @@ import "controllers"
 
 import * as jquery from "jquery"
 import "semantic-ui"
+import "channels"
 
+
+function scroll_bottom () {
+  if ($('#messages').length > 0) {
+    $('#messages').scrollTop($('#messages')[0].scrollHeight);
+  }
+}
+
+function submit_message () {
+  $('#message_body').on('keydown', function(e) {
+    if (e.keyCode == 13) {
+      $('button').click();
+      e.target.value = "";
+    };
+  });
+};
 
 $(document).on('turbo:load', function() {
-  console.log('loaded turbo links')
-  $('.ui.dropdown').dropdown()
-});import "channels"
+  $('.ui.dropdown').dropdown();
 
-$("#new_message").on("submit", function () {
-  $("#new_message").submit();
+  scroll_bottom();
+  submit_message();
 });

@@ -1,14 +1,18 @@
 class MessagesController < ApplicationController
   def create
     message = current_user.messages.build(message_params)
-    if message.save
+    message.save
 
-      ActionCable.server.broadcast('chatroom_channel',
-                                   { message_view: message_render(message) })
-    else
-      flash.now[:error] = 'Could not save the message at this time'
-      # redirect_to chatroom_path, status: :unprocessable_entity
-    end
+    # ChatroomChannel.broadcast_to(@message)
+
+    # if message.save
+
+    ActionCable.server.broadcast('chatroom_channel',
+                                 { message_view: message_render(message) })
+    # else
+    #   flash.now[:error] = 'Could not save the message at this time'
+    #   redirect_to chatroom_path, status: :unprocessable_entity
+    # end
   end
 
   private
