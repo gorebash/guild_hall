@@ -8,23 +8,14 @@ import "channels"
 
 
 function scroll_bottom () {
-  if ($('#messages').length > 0) {
-    $('#messages').scrollTop($('#messages')[0].scrollHeight);
+  if ($('#messages-outer').length > 0) {
+    $('#messages-outer').scrollTop($('#messages-outer')[0].scrollHeight);
   }
 }
 
-function submit_message () {
-  $('#message_body').on('keydown', function(e) {
-    if (e.keyCode == 13) {
-      $('button').click();
-      e.target.value = "";
-    };
-  });
-};
 
 $(document).on('turbo:load', function() {
   $('.ui.dropdown').dropdown();
 
   scroll_bottom();
-  submit_message();
 });

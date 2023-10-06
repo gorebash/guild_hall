@@ -7,15 +7,19 @@
   <div class="twelve wide column">
     <div class="ui fluid raised card chatbox">
       
-      <%# turbo_stream_from @messages %>
-      <div class="content" id="messages">
+      
+      <%= turbo_stream_from "messages" %>
+
+      <div class="content" id="messages-outer">
         <div class="ui feed" id="message-container">
-          <%= render @messages %>
+          <%= turbo_frame_tag "messages" do %>
+            <%= render @messages %>
+          <% end %>
         </div>
       </div>
 
       <div class="extra content">
-        <%= form_for(@message, html: {class: "ui reply form", role: "form"}, url: message_path, remote: true) do |f| %>
+        <%= form_for(@message, html: {class: "ui reply form", role: "form"}, url: message_path) do |f| %>
           <div class="field">
             <div class="ui fluid icon input">
               <%= f.text_field :body, autocomplete: "off", autofocus: true %>

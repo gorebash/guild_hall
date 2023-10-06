@@ -1,7 +1,9 @@
-<div class="event">
-  <div class="content">
-    <div class="summary">
-      <em><%= message.user.username %></em>: <%= message.body %>
+<%= turbo_frame_tag message do %>
+  <div class="event message">
+    <div class="content">
+      <div class="summary">
+        <em><%= message.user.username %></em>: <%= message.body %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
