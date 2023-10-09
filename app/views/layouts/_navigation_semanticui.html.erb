@@ -1,0 +1,31 @@
+<div class="ui small inverted menu">
+  <div class="ui container">
+    <div class="header item">The Guild Hall</div>
+
+    <%= link_to "Chatroom", chatroom_path, class: "item" %>
+
+    <a class="item">
+      Messages
+    </a>
+
+    <div class="right menu">
+      <% if logged_in? %>
+        <div class="ui dropdown item">
+          <%= current_user.username %> <i class="dropdown icon"></i>
+          <div class="menu">
+              <%= link_to current_user.username, user_path(current_user), class: "item" %>
+              <%= link_to "Logout", logout_path, method: :delete, class: "item", data: { "turbo-method": :delete } %>
+          </div>
+        </div>
+      <% end %>
+      <% if !logged_in? %>
+        <div class="item">
+          <%= link_to "Login", login_path, class: "ui button" %>
+        </div>
+        <div class="item">
+          <%= link_to 'Sign up', signup_path, class: "ui primary button" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
