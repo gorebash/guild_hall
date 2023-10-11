@@ -1,57 +1,60 @@
 
-<div class="container">
-<h4 class="ui center aligned medium icon header">
-  <i class="circular yellow comment icon"></i>
-  The Chat Room
-</h4>
-
-<div class="ui stackable two column grid">
-  <div class="twelve wide column">
-    <div class="ui fluid raised card chatbox">
-      
-      
-      <%= turbo_stream_from "messages" %>
-
-      <div class="content" id="messages-outer">
-        <div class="ui feed" id="message-container">
-          <%= turbo_frame_tag "messages" do %>
-            <%= render @messages %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="extra content">
-        <%= form_for(@message, html: {class: "ui reply form", role: "form"}, url: message_path) do |f| %>
-          <div class="field">
-            <div class="ui fluid icon input">
-              <%= f.text_field :body, autocomplete: "off", autofocus: true %>
-              <%= f.button nil, class: "big ui yellow icon button" do %>
-                  <i class="inverted edit icon"></i>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-  <div class="four wide column">
-    <div class="ui fluid raised card">
-      <div class="content">
-        <div class="ui inverted fluid vertical menu">
-          <a class="active item">
-            Home
-          </a>
-          <a class="item">
-            Messages
-          </a>
-          <a class="item">
-            Friends
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container text-center mt-5">
+  <h4>
+    <i class="circular yellow comment icon"></i>
+    The Chat Room
+  </h4>
 </div>
 
+<div class="container mt-3">
+  <div class="row g-5">
+    <div class="col">
+      <div class="ui fluid raised card chatbox">
+        
+        
+        <%= turbo_stream_from "messages" %>
+
+        <div class="content" id="messages-outer">
+          <div class="ui feed" id="message-container"> 
+            <%= turbo_frame_tag "messages" do %>
+              <%= render @messages %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="extra content">
+          <%= form_for(@message, html: {class: "row g-0", role: "form"}, url: message_path) do |f| %>
+            <div class="col">
+              <%= f.text_field :body, class: "form-control", autocomplete: "off", autofocus: true %>
+            </div>
+            <div class="col-auto">
+              <%= f.button nil, class: "btn btn-primary" do %>
+                  <%# <i class="inverted edit icon"></i> %>
+                  Send
+              <% end %>
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-4">
+        <div class="ui fluid raised card">
+          <div class="content">
+            <div class="ui inverted fluid vertical menu">
+              <a class="active item">
+                Home
+              </a>
+              <a class="item">
+                Messages
+              </a>
+              <a class="item">
+                Friends
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
 </div>

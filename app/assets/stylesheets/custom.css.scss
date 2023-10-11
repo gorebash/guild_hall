@@ -1,6 +1,9 @@
 //@import 'semantic-ui';
 @import 'bootstrap';
 
+$theme-colors: (
+  primary: $indigo
+);
 
 body { background-color: #f2f2f2;}
 .chatbox {
