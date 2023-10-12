@@ -1,4 +1,3 @@
-//@import 'semantic-ui';
 @import 'bootstrap';
 
 $theme-colors: (
@@ -6,17 +5,17 @@ $theme-colors: (
 );
 
 body { background-color: #f2f2f2;}
-.chatbox {
-  height: 450px;
-}
+// .chatbox {
+//   height: 450px;
+// }
 
-#messages-outer {
-  height: 15em;
-  overflow: auto;
-}
+// #messages-outer {
+//   height: 15em;
+//   overflow: auto;
+// }
 
-.input {
-  button {
-    display:none;
-  }
-}
+// .input {
+//   button {
+//     display:none;
+//   }
+// }
