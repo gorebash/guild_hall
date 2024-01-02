@@ -1,6 +1,7 @@
 # README
 
 ## Create your own { Guild Hall }
+
 Come for the friends, stay for the friends
 
 # Setup
@@ -11,5 +12,6 @@ Come for the friends, stay for the friends
 
 # Local Startup
 
+- `bundle install`
 - `rails db:migrate`
 - `rails s`
