@@ -1,5 +1,8 @@
 # README
 
+## Create your own { Guild Hall }
+Come for the friends, stay for the friends
+
 # Setup
 
 - Ruby version 3.2.2
@@ -8,5 +11,5 @@
 
 # Local Startup
 
-- rails db:migrate
-- rails start
+- `rails db:migrate`
+- `rails s`
