@@ -15,4 +15,13 @@ class ApplicationController < ActionController::Base
   #   flash[:error] = 'You must be logged in to perform that action'
   #   redirect_to login_path
   # end
+
+
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
+  end
 end
