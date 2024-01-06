@@ -7,12 +7,12 @@ Rails.application.routes.draw do
   get 'chatroom', to: 'chatroom#index'
   post 'message', to: 'messages#create'
 
-  get 'login', to: 'sessions#new'
-  post 'login', to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy'
+  # get 'login', to: 'sessions#new'
+  # post 'login', to: 'sessions#create'
+  # delete 'logout', to: 'sessions#destroy'
 
-  get 'signup', to: 'users#new'
-  resources :users, except: [:new]
+  # get 'signup', to: 'users#new'
+  # resources :users, except: [:new]
 
   mount ActionCable.server, at: '/cable'
 end
