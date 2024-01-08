@@ -1,0 +1,13 @@
+
+<%= turbo_frame_tag Message.new do %>
+    <%= form_for(Message.new, html: {class: "row g-3", role: "form"}, url: message_path) do |f| %>
+        <div class="col">
+            <%= f.text_field :body, class: "form-control", autocomplete: "off", autofocus: true %>
+        </div>
+        <div class="col-auto">
+            <%= f.button nil, class: "btn m-0 p-0" do %>
+                <i class="bi bi-arrow-right-circle-fill" style="font-size:1.6em;"></i> 
+            <% end %>
+        </div>
+    <% end %>
+<% end %>

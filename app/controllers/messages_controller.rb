@@ -1,6 +1,8 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
   
+  def new; end
+
   def create
     message = current_user.messages.build(message_params)
     if message.save

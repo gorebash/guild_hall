@@ -1,1 +1,2 @@
 <%= turbo_stream.prepend "messages", @message %>
+<%= turbo_stream.replace Message.new, partial: "messages/new" %>

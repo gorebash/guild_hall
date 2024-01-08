@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get 'chatroom', to: 'chatroom#index'
+  get 'message', to: 'messages#new'
   post 'message', to: 'messages#create'
 
   # get 'login', to: 'sessions#new'
