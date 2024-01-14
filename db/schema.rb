@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_04_163114) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_13_233340) do
   create_table "messages", force: :cascade do |t|
     t.text "body"
     t.integer "user_id"
@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_04_163114) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "username"
+    t.date "birth_dt"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

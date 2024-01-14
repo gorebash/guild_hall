@@ -51,6 +51,7 @@ gem 'bootstrap', '~> 5.3'
 gem 'sassc-rails'
 
 gem 'devise'
+gem 'validates_timeliness', '~> 7.0.0.beta1'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
