@@ -6,7 +6,7 @@ ValidatesTimeliness.setup do |config|
   # config.default_timezone = :utc
   #
   # Set the dummy date part for a time type values.
-  # config.dummy_date_for_time_type = [ 2000, 1, 1 ]
+  config.dummy_date_for_time_type = [ 2000, 1, 1 ]
   #
   # Ignore errors when restriction options are evaluated
   # config.ignore_restriction_errors = false
@@ -24,7 +24,7 @@ ValidatesTimeliness.setup do |config|
   # )
   #
   # Use the plugin date/time parser which is stricter and extendable
-  # config.use_plugin_parser = false
+  config.use_plugin_parser = false
   #
   # Add one or more formats making them valid. e.g. add_formats(:date, 'd(st|rd|th) of mmm, yyyy')
   # config.parser.add_formats()

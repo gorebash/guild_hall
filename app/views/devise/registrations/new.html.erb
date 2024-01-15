@@ -22,6 +22,11 @@
       </div>
 
       <div class="mb-3">
+        <%= f.label :birth_date, "Birth date", class: "form-label" %>
+        <%= f.date_field :birth_date %>
+      </div>
+
+      <div class="mb-3">
         <%= f.label :password, class: "form-label" %>
         <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
