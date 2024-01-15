@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Guilds</h1>
+
+<div id="guilds">
+  <% @guilds.each do |guild| %>
+    <%= render guild %>
+    <p>
+      <%= link_to "Show this guild", guild %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New guild", new_guild_path %>

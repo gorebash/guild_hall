@@ -35,3 +35,4 @@
 /config/master.key
 
 *.drawio.bkp
+*.drawio.dtmp
