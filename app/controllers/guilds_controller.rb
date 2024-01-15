@@ -1,6 +1,10 @@
 class GuildsController < ApplicationController
   before_action :set_guild, only: %i[ show edit update destroy ]
 
+
+    ### next step: add current user to be associated with new guilds. maybe add role assignment too. ###
+
+
   # GET /guilds or /guilds.json
   def index
     @guilds = Guild.all
