@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :messages
+  has_many :guild_members
+  has_many :guilds, through: :guild_members
 
   validates :username,
             presence: true,
@@ -12,6 +14,4 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false }
 
   validates_date :birth_date, on_or_before: lambda { Date.current }
-
-  has_many :messages
 end

@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_15_223212) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_15_224047) do
+  create_table "guild_members", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "guild_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["guild_id"], name: "index_guild_members_on_guild_id"
+    t.index ["user_id"], name: "index_guild_members_on_user_id"
+  end
+
   create_table "guilds", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -39,4 +48,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_15_223212) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "guild_members", "guilds"
+  add_foreign_key "guild_members", "users"
 end
