@@ -1,6 +1,7 @@
 class Message < ApplicationRecord
   validates :body, presence: true
   belongs_to :user
+  belongs_to :guild
 
   scope :custom_display, -> { order(:created_at).last(20) }
 

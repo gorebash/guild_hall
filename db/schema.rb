@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_15_224047) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_20_175643) do
   create_table "guild_members", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "guild_id", null: false
@@ -32,6 +32,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_15_224047) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "guild_id", null: false
+    t.index ["guild_id"], name: "index_messages_on_guild_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,4 +52,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_15_224047) do
 
   add_foreign_key "guild_members", "guilds"
   add_foreign_key "guild_members", "users"
+  add_foreign_key "messages", "guilds"
 end
