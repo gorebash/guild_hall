@@ -8,7 +8,10 @@ class GuildsController < ApplicationController
   end
 
   # GET /guilds/1 or /guilds/1.json
-  def show; end
+  def show
+    @message = Message.new
+    @messages = Message.custom_display
+  end
 
   # GET /guilds/new
   def new
