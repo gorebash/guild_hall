@@ -26,9 +26,13 @@ class GuildsController < ApplicationController
   # POST /guilds or /guilds.json
   def create
     @guild = Guild.new(guild_params)
+    saved = @guild.save
+    
+    @guild_user = GuildMember.create(guild_id: @guild.id, user_id: current_user.id)
+    @guild_user.save
 
     respond_to do |format|
-      if @guild.save
+      if saved
         format.html { redirect_to guild_url(@guild), notice: "Guild was successfully created." }
         format.json { render :show, status: :created, location: @guild }
       else
