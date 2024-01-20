@@ -1,0 +1,19 @@
+
+
+<div class="card border shadow bg-body rounded chatbox">
+  <div class="card-body" id="messages-outer">
+    <h5 class="card-title">Chatroom</h5>
+    <%= turbo_stream_from "messages" %>
+
+    <div id="message-container"> 
+      <%= turbo_frame_tag "messages" do %>
+        <%= render @messages %>
+      <% end %>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= turbo_frame_tag Message.new do %>
+      <%= render "messages/new" %>
+    <% end %>
+  </div>
+</div>
