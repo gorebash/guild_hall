@@ -1,13 +1,15 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
   
-  def new; end
+  def new
+    @guild = Guild.find(params[:guild_id])
+  end
 
   def create
     message = current_user.messages.build(message_params)
 
     # todo: check that this user has permissions to message this guild
-    #message.guild = @guild
+    message.guild_id = params[:guild_id]
 
     if message.save
       respond_to do |format|
@@ -23,6 +25,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:body, :guild_id)
+    params.require(:message).permit(:body)
   end
 end
