@@ -1,21 +1,21 @@
 Rails.application.routes.draw do
-  resources :guild_members
-  resources :guilds
-  devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  #resources :guild_members
+  #resources :guilds
+  resources :guilds do
+    #resources :message, only: [:new, :create]
+
+    get 'message', to: 'messages#new'
+    post 'message', to: 'messages#create'
+  end
+  
+  devise_for :users
 
   root 'home#index'
 
-  get 'chatroom', to: 'chatroom#index'
-  get 'message', to: 'messages#new'
-  post 'message', to: 'messages#create'
+  # get 'chatroom', to: 'chatroom#index'
 
-  # get 'login', to: 'sessions#new'
-  # post 'login', to: 'sessions#create'
-  # delete 'logout', to: 'sessions#destroy'
 
-  # get 'signup', to: 'users#new'
-  # resources :users, except: [:new]
 
   mount ActionCable.server, at: '/cable'
 end
