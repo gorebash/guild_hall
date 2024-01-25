@@ -13,12 +13,12 @@ class MessagesController < ApplicationController
 
     if message.save
       respond_to do |format|
-        format.html { redirect_to chatroom_path }
+        format.html { redirect_to guilds_path }
         format.turbo_stream
       end
     else
       flash.now[:error] = 'Could not save the message at this time'
-      redirect_to chatroom_path, status: :unprocessable_entity
+      redirect_to guilds_path, status: :unprocessable_entity
     end
   end
 
