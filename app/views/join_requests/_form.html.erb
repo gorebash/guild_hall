@@ -1,0 +1,24 @@
+<%= form_with(model: join_request) do |form| %>
+  <% if join_request.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(join_request.errors.count, "error") %> prohibited this join_request from being saved:</h2>
+
+      <ul>
+        <% join_request.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+
+  <div>
+    <%= form.label :invite_code, style: "display: block" %>
+    <%= form.text_field :invite_code %>
+  </div>
+
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

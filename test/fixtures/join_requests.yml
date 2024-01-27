@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  guild: one
+  invite_code: MyString
+  status: MyString
+
+two:
+  user: two
+  guild: two
+  invite_code: MyString
+  status: MyString

@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :messages
   has_many :guild_members
   has_many :guilds, through: :guild_members
+  has_many :join_requests
 
   validates :username,
             presence: true,
