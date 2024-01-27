@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  resources :join_requests
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   #resources :guild_members
   #resources :guilds
   resources :guilds do
     #resources :message, only: [:new, :create]
+    resources :join_requests, except: [:new, :create]
 
     get 'message', to: 'messages#new'
     post 'message', to: 'messages#create'
@@ -14,9 +14,8 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  # get 'chatroom', to: 'chatroom#index'
-
-
+  get 'join_request', to:'join_requests#new'
+  post 'join_requests', to:'join_requests#create'
 
   mount ActionCable.server, at: '/cable'
 end

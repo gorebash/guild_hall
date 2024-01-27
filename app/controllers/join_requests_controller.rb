@@ -4,7 +4,15 @@ class JoinRequestsController < ApplicationController
 
   # GET /join_requests or /join_requests.json
   def index
-    @join_requests = JoinRequest.all
+    # todo: pull from query
+    guild_id = 1
+
+    # user must be a member of the current guild
+    if (GuildMember.where(guild_id: guild_id, user: current_user).take!)
+      @join_requests = JoinRequest.where guild_id:guild_id
+    else
+      format.html { redirect_to join_requests_url(@join_request), notice: "You are not able to view requests for this guild." }
+    end
   end
 
   # GET /join_requests/1 or /join_requests/1.json
@@ -26,9 +34,11 @@ class JoinRequestsController < ApplicationController
     @join_request.user = current_user
     @join_request.guild = Guild.where(invite_code: @join_request.invite_code).take!
 
+    #todo: check if the join request already exists
+
     respond_to do |format|
       if @join_request.save
-        format.html { redirect_to join_request_url(@join_request), notice: "Join request was successfully created." }
+        format.html { redirect_to join_requests_url(@join_request), notice: "Join request was successfully created." }
         format.json { render :show, status: :created, location: @join_request }
       else
         format.html { render :new, status: :unprocessable_entity }
