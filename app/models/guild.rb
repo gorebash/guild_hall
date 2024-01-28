@@ -7,7 +7,7 @@ class Guild < ApplicationRecord
     validates :name, :description, presence: true
 
     before_create do
-        self.invite_code = generate_unique_token(6)
+        self.invite_code = generate_unique_token(6).upcase
     end
 
     def generate_unique_token(length)

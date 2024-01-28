@@ -52,10 +52,12 @@
 
   <div class="card-footer">
     <p class="card-text">Would you like to let them join the guild?</p>
-
+    
     <div class="row g-3">
       <div class="col-auto">
-        <%= form_with url: guild_join_request_path(guild_id: @join_request.guild_id, join_request: @join_request), method: :patch do |form| %>
+        <%= form_with model: @join_request, url: guild_join_request_path, 
+          method: :patch do |form| %>
+
           <%= form.hidden_field :status, value: "accepted" %>
           <%= form.submit "Approve", class: "btn btn-primary" %>
         <% end %>

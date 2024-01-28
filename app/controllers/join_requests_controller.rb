@@ -4,12 +4,11 @@ class JoinRequestsController < ApplicationController
 
   # GET /join_requests or /join_requests.json
   def index
-    # todo: pull from query
-    guild_id = 1
+    guild = Guild.find(params[:guild_id])
 
     # user must be a member of the current guild
-    if (GuildMember.where(guild_id: guild_id, user: current_user).take!)
-      @join_requests = JoinRequest.where guild_id:guild_id
+    if (GuildMember.where(guild_id: guild.id, user: current_user).take!)
+      @join_requests = JoinRequest.where guild_id:guild.id
     else
       format.html { redirect_to join_requests_url(@join_request), notice: "You are not able to view requests for this guild." }
     end
@@ -87,10 +86,6 @@ class JoinRequestsController < ApplicationController
     end
 
     def join_approval_params
-      if params[:join_request].is_a? String
-        { status: JoinRequest.get_status[params[:join_request]] }
-      else
-        params.require(:join_request).permit(:status)
-      end
+      params.require(:join_request).permit(:status)
     end
 end

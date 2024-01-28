@@ -3,8 +3,8 @@
 <%= render @join_request %>
 
 <div>
-  <%= link_to "Edit this join request", edit_join_request_path(@join_request) %> |
-  <%= link_to "Back to join requests", join_requests_path %>
+  <%= link_to "Edit this join request", edit_guild_join_request_path(guild_id: @join_request.guild_id, id: @join_request.id) %> |
+  <%= link_to "Back to join requests", guild_join_requests_path %>
 
   <%= button_to "Destroy this join request", @join_request, method: :delete %>
 </div>

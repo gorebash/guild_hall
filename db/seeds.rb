@@ -24,3 +24,8 @@ GuildMember.create([
   { user_id: users[1].id, guild_id: guilds[1].id },
   { user_id: users[1].id, guild_id: guilds[2].id },
 ])
+
+JoinRequest.create([
+  { user_id: users[0].id, guild_id: guilds[2].id, invite_code: guilds[2].invite_code },
+  { user_id: users[1].id, guild_id: guilds[0].id, invite_code: guilds[0].invite_code },
+])
