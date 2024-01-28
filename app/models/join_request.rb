@@ -8,4 +8,8 @@ class JoinRequest < ApplicationRecord
     declined: 1,
     accepted: 2
   }
+
+  def get_status (key) 
+    status[key]
+  end
 end

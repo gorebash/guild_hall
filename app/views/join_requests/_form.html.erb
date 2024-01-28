@@ -12,13 +12,9 @@
   <% end %>
   
 
-  <div>
-    <%= form.label :invite_code, style: "display: block" %>
-    <%= form.text_field :invite_code %>
-  </div>
-
-
-  <div>
-    <%= form.submit %>
+  <div class="input-group mb-3">
+    <%= form.label :invite_code, "Invite code:", class: "input-group-text" %>
+    <%= form.text_field :invite_code, class: "form-control", placeholder: "A12345" %>
+    <%= form.submit "Request to join", class: "btn btn-primary" %>
   </div>
 <% end %>

@@ -1,10 +1,77 @@
-<h1>Editing join request</h1>
+<h1>Request to Join Your Guild</h1>
 
-<%= render "form", join_request: @join_request %>
+<div class="card border shadow bg-body rounded mt-5" style="max-width:40rem;">
+  <div class="card-header">
+    <h5>[Name] would like to join <%= @guild.name %></h5>
+  </div>
 
-<br>
+  <div class="card-body">
 
-<div>
-  <%= link_to "Show this join request", @join_request %> |
-  <%= link_to "Back to join requests", join_requests_path %>
+    <div class="mb-3 row">
+      <label class="col-sm-3 col-form-label text-end"><strong>Name</strong></label>
+      <div class="col-sm-9">
+        <input type="text" readonly class="form-control-plaintext" value="[First Last Name]">
+      </div>
+    </div>
+    
+    <div class="mb-3 row">
+      <label class="col-sm-3 col-form-label text-end"><strong>Username</strong></label>
+      <div class="col-sm-9">
+        <input type="text" readonly class="form-control-plaintext" value="<%= @join_user.username %>">
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label class="col-sm-3 col-form-label text-end"><strong>Invite code</strong></label>
+      <div class="col-sm-9">
+        <input type="text" readonly class="form-control-plaintext" value="<%= @join_request.invite_code.upcase %>">
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label class="col-sm-3 col-form-label text-end"><strong>Requested</strong></label>
+      <div class="col-sm-9">
+        <input type="text" readonly class="form-control-plaintext" value="<%= time_ago_in_words(@join_request.created_at) %> ago">
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label class="col-sm-3 col-form-label text-end"><strong>Member Created</strong></label>
+      <div class="col-sm-9">
+        <input type="text" readonly class="form-control-plaintext" value="<%= time_ago_in_words(@join_user.created_at) %> ago">
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label class="col-sm-3 col-form-label text-end"><strong>Status</strong></label>
+      <div class="col-sm-9">
+        <input type="text" readonly class="form-control-plaintext" value="<%= @join_request.status %>">
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <p class="card-text">Would you like to let them join the guild?</p>
+
+    <div class="row g-3">
+      <div class="col-auto">
+        <%= form_with url: guild_join_request_path(guild_id: @join_request.guild_id, join_request: @join_request), method: :patch do |form| %>
+          <%= form.hidden_field :status, value: "accepted" %>
+          <%= form.submit "Approve", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <div class="col-auto">
+        <%= form_with(model: @join_request) do |form| %>
+          <%= form.hidden_field :status, value: "declined" %>
+          <%= form.submit "Ignore request", class: "btn" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="mt-4">
+  <%= link_to "Back to join requests", guild_join_requests_path %>
 </div>

@@ -24,7 +24,7 @@ class JoinRequestsController < ApplicationController
     @join_request = JoinRequest.new
   end
 
-  # GET /join_requests/1/edit
+  # GET /guilds/1/join_requests/1/edit
   def edit
   end
 
@@ -49,9 +49,12 @@ class JoinRequestsController < ApplicationController
 
   # PATCH/PUT /join_requests/1 or /join_requests/1.json
   def update
+
+    # todo: check user owns guild
+
     respond_to do |format|
-      if @join_request.update(join_request_params)
-        format.html { redirect_to join_request_url(@join_request), notice: "Join request was successfully updated." }
+      if @join_request.update(join_approval_params)
+        format.html { redirect_to guild_join_request_url(@join_request), notice: "Join request was successfully updated." }
         format.json { render :show, status: :ok, location: @join_request }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -74,10 +77,20 @@ class JoinRequestsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_join_request
       @join_request = JoinRequest.find(params[:id])
+      @guild = Guild.find(params[:guild_id])
+      @join_user = User.find(@join_request.user_id)
     end
 
     # Only allow a list of trusted parameters through.
     def join_request_params
       params.require(:join_request).permit(:invite_code)
+    end
+
+    def join_approval_params
+      if params[:join_request].is_a? String
+        { status: JoinRequest.get_status[params[:join_request]] }
+      else
+        params.require(:join_request).permit(:status)
+      end
     end
 end
