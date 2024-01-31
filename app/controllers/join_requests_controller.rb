@@ -7,10 +7,12 @@ class JoinRequestsController < ApplicationController
     guild = Guild.find(params[:guild_id])
 
     # user must be a member of the current guild
-    if (GuildMember.where(guild_id: guild.id, user: current_user).take!)
-      @join_requests = JoinRequest.where guild_id:guild.id
+    # todo: user must also be an admin in the current guild.
+    if (GuildMember.exists?(guild_id: guild.id, user: current_user))
+      @join_requests = JoinRequest.where guild_id:guild.id, status: "pending"
     else
-      format.html { redirect_to join_requests_url(@join_request), notice: "You are not able to view requests for this guild." }
+      flash[:danger] = "You are not able to view requests for this guild."
+      format.html { render guilds_path, status: :unprocessable_entity }
     end
   end
 
@@ -31,13 +33,23 @@ class JoinRequestsController < ApplicationController
   def create
     @join_request = JoinRequest.new(join_request_params)
     @join_request.user = current_user
-    @join_request.guild = Guild.where(invite_code: @join_request.invite_code).take!
+    @join_request.guild = Guild.where(invite_code: @join_request.invite_code).take
+    @join_request.invite_code = @join_request.invite_code.upcase
 
-    #todo: check if the join request already exists
+    if (@join_request.guild == nil)
+      flash[:danger] = "That guild does not exist."
+      return render :new, status: :unprocessable_entity
+    end
+
+    if JoinRequest.exists? invite_code: @join_request.invite_code
+      flash[:danger] = "You have already requested to join this guild."
+      return render :new, status: :unprocessable_entity
+    end
 
     respond_to do |format|
       if @join_request.save
-        format.html { redirect_to join_requests_url(@join_request), notice: "Join request was successfully created." }
+        flash[:success] = "Your request to join was successfully sent."
+        format.html { redirect_to join_requests_url(@join_request) }
         format.json { render :show, status: :created, location: @join_request }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -49,16 +61,34 @@ class JoinRequestsController < ApplicationController
   # PATCH/PUT /join_requests/1 or /join_requests/1.json
   def update
 
-    # todo: check user owns guild
+    # todo: restrict to admin role in guild as well
+    if !(GuildMember.exists? user: current_user, guild: @guild)
+      flash[:danger] = "You are not authorized to process membership requests."
+      return render :new, status: :unprocessable_entity
+    end
 
     respond_to do |format|
       if @join_request.update(join_approval_params)
-        flash[:success] = "Join request was successfully updated." 
-        format.html { redirect_to guild_join_request_url(@join_request) }
-        format.json { render :show, status: :ok, location: @join_request }
+
+        # todo: create guildmembership if approved
+        # todo: assign newly created members to an entry role
+        if (@join_request.status == "approved")
+          membership = GuildMember.new(params.require(:guild_members).permit(:user_id, :guild_id))
+          membership.user = @join_request.user
+          membership.guild = @join_request.guild
+          
+          if !membership.save 
+            flash[:danger] = "There was a problem creating this membership."
+            return render :edit, status: :unprocessable_entity
+          end
+        end
+        
+        flash[:success] = "Membership was #{@join_request.status}."
+        format.html { redirect_to guild_join_requests_path }
+        
       else
+        flash[:danger] = "There was a problem saving the join decision."
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @join_request.errors, status: :unprocessable_entity }
       end
     end
   end

@@ -55,15 +55,13 @@
     
     <div class="row g-3">
       <div class="col-auto">
-        <%= form_with model: @join_request, url: guild_join_request_path, 
-          method: :patch do |form| %>
-
+        <%= form_with model: @join_request, url: guild_join_request_path do |form| %>
           <%= form.hidden_field :status, value: "accepted" %>
           <%= form.submit "Approve", class: "btn btn-primary" %>
         <% end %>
       </div>
       <div class="col-auto">
-        <%= form_with(model: @join_request) do |form| %>
+        <%= form_with model: @join_request, url: guild_join_request_path do |form| %>
           <%= form.hidden_field :status, value: "declined" %>
           <%= form.submit "Ignore request", class: "btn" %>
         <% end %>
