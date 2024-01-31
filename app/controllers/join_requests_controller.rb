@@ -4,12 +4,12 @@ class JoinRequestsController < ApplicationController
 
   # GET /join_requests or /join_requests.json
   def index
-    guild = Guild.find(params[:guild_id])
+    @guild = Guild.find(params[:guild_id])
 
     # user must be a member of the current guild
     # todo: user must also be an admin in the current guild.
-    if (GuildMember.exists?(guild_id: guild.id, user: current_user))
-      @join_requests = JoinRequest.where guild_id:guild.id, status: "pending"
+    if (GuildMember.exists?(guild_id: @guild.id, user: current_user))
+      @join_requests = JoinRequest.where guild_id:@guild.id, status: "pending"
     else
       flash[:danger] = "You are not able to view requests for this guild."
       format.html { render guilds_path, status: :unprocessable_entity }
@@ -17,8 +17,8 @@ class JoinRequestsController < ApplicationController
   end
 
   # GET /join_requests/1 or /join_requests/1.json
-  def show
-  end
+  # def show
+  # end
 
   # GET /join_requests/new
   def new
@@ -70,10 +70,9 @@ class JoinRequestsController < ApplicationController
     respond_to do |format|
       if @join_request.update(join_approval_params)
 
-        # todo: create guildmembership if approved
-        # todo: assign newly created members to an entry role
+        # todo: assign newly created members to an assigned role
         if (@join_request.status == "approved")
-          membership = GuildMember.new(params.require(:guild_members).permit(:user_id, :guild_id))
+          membership = GuildMember.new(:user_id, :guild_id)
           membership.user = @join_request.user
           membership.guild = @join_request.guild
           

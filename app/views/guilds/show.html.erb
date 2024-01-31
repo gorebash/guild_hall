@@ -13,26 +13,7 @@
     </div>
     
     <div class="col-4">
-        <div class="card border shadow rounded">
-          <div class="content">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Chatroom</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Merry Feasts</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Members</a>
-              </li>
-              <li><%= link_to "Back to guilds", guilds_path, class: "nav-link" %></li>
-              <li><%= link_to "Leave guild", guilds_path, class: "nav-link" %></li>
-              <li><%= link_to "(Admin) Join Requests", guild_join_requests_path(@guild), class: "nav-link" %></li>
-              <li class="nav-item"><%= link_to "(Admin) Edit guild", edit_guild_path(@guild), class: "nav-link" %></li>
-              <li><%= link_to "(Admin) Delete guild", @guild, class: "nav-link", method: :delete %></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <%= render "guild_nav", guild:@guild %>
+    </div>
   </div>
 </div>

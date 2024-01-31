@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   #resources :guild_members
   #resources :guilds
   resources :guilds do
-    #resources :message, only: [:new, :create]
-    resources :join_requests, except: [:new, :create]
+    resources :join_requests, except: [:new, :create, :show]
 
     get 'message', to: 'messages#new'
     post 'message', to: 'messages#create'
