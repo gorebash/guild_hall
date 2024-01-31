@@ -53,22 +53,13 @@ class JoinRequestsController < ApplicationController
 
     respond_to do |format|
       if @join_request.update(join_approval_params)
-        format.html { redirect_to guild_join_request_url(@join_request), notice: "Join request was successfully updated." }
+        flash[:success] = "Join request was successfully updated." 
+        format.html { redirect_to guild_join_request_url(@join_request) }
         format.json { render :show, status: :ok, location: @join_request }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @join_request.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /join_requests/1 or /join_requests/1.json
-  def destroy
-    @join_request.destroy
-
-    respond_to do |format|
-      format.html { redirect_to join_requests_url, notice: "Join request was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 

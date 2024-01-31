@@ -5,7 +5,6 @@ export default class extends Controller {
   static targets = [ "messageBody", "messageContainer" ]
 
   connect() {
-    console.log("chat controller connected");
     this.messageContainerTarget.scrollTop = this.messageContainerTarget.scrollHeight;
   }
 
