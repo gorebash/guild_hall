@@ -18,7 +18,30 @@
     </div>
     
     <div class="container mt-4">
-      <%= yield %>
+
+      <% if !user_signed_in? %>
+        <%= yield %>
+      <% else %>
+
+        <div class="text-center mt-5">
+          <h4><i class="bi bi-fire" style="font-size:5rem;"></i></h4>
+          <h2><%= @guild.name %></h2>
+          <h5><%= @guild.description %></h5>
+        </div>
+
+        <div class="mt-3">
+          <div class="row g-5">
+            <div class="col">
+              <%= yield %>
+            </div>
+            
+            <div class="col-4">
+              <%= render "guilds/guild_nav", guild:@guild %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
     </div>
   </body>
 </html>

@@ -2,14 +2,12 @@
     <div class="content">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Chatroom</a>
+                <%= link_to "Chatroom", @guild, class: "nav-link active" %>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Merry Feasts</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Members</a>
-            </li>
+            <li class="nav-item"><%= link_to "Members", members_path, class: "nav-link" %></li>
             <li><%= link_to "Back to guilds", guilds_path, class: "nav-link" %></li>
             <li><%= link_to "Leave guild", guilds_path, class: "nav-link" %></li>
             <li><%= link_to "(Admin) Join Requests", guild_join_requests_path(guild), class: "nav-link" %></li>

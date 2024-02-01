@@ -1,0 +1,12 @@
+
+<h3>Guild Members</h3>
+<% @members.each do |member| %>
+  <div class="card border shadow bg-body rounded mb-3">
+    <div class="card-body">
+      <h5 class="card-title"><%= member.username %></h5>
+      <p><%= member.email %></p>
+      <p><%= member.birth_date %></p>
+      <p><i>Joined <%= time_ago_in_words(member.created_at) %> ago</i></p>
+    </div>
+  </div>
+<% end %>

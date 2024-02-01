@@ -7,7 +7,6 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link" href="#">Messages</a></li>
-        <li class="nav-item"><%= link_to "Join a Guild", join_request_path, class: "nav-link" %></li>
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -18,11 +17,13 @@
         <% if user_signed_in? %>
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Switch Guild</a>
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Guild</a>
               <ul class="dropdown-menu">
                 <% current_user.guilds.each do |guild| %>
                   <li><%= link_to guild.name, guild_path(guild), class: "dropdown-item" %></li>
-                <% end %> 
+                <% end %>
+                <li><hr class="dropdown-divider"></li>
+                <li><%= link_to "Join a Guild", join_request_path, class: "dropdown-item" %></li>
               </ul>
             </li>
             <li class="nav-item dropdown">

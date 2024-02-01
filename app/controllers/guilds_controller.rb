@@ -1,10 +1,13 @@
 class GuildsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
   before_action :set_guild, only: %i[show edit update destroy]
 
   # GET /guilds or /guilds.json
   def index
-    @guilds = current_user.guilds
+    if !user_signed_in?
+      #@guilds = current_user.guilds
+      redirect_to home_path
+    end
   end
 
   # GET /guilds/1 or /guilds/1.json

@@ -1,7 +1,7 @@
 
 <div class="card border shadow bg-body rounded chatbox" data-controller="chat">
   <div class="card-body" id="messages-outer">
-    <h5 class="card-title">Chatroom</h5>
+    <h3 class="card-title">Chatroom</h3>
     <%= turbo_stream_from "messages" %>
 
     <div id="message-container" data-chat-target="messageContainer">

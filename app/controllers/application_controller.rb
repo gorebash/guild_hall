@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   #   redirect_to login_path
   # end
 
+  before_action :set_current_guild
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -23,5 +24,13 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :birth_date])
+  end
+
+  def set_current_guild
+    if user_signed_in?
+      #todo: save/read from session
+      @guild = current_user.guilds.first #GuildMember.where(user_id: current_user.id).first.guild
+      @guilds = current_user.guilds
+    end
   end
 end

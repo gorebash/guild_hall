@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  #resources :guild_members
-  #resources :guilds
+  
+  #root 'home#index'
+  root 'guilds#index'
+  
   resources :guilds do
     resources :join_requests, except: [:new, :create, :show]
 
@@ -11,10 +13,12 @@ Rails.application.routes.draw do
   
   devise_for :users
 
-  root 'home#index'
+  get 'home', to:'home#index'
 
   get 'join_request', to:'join_requests#new'
   post 'join_requests', to:'join_requests#create'
+
+  get 'members', to:'guild_members#index'
 
   mount ActionCable.server, at: '/cable'
 end

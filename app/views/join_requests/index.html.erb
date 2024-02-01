@@ -1,26 +1,20 @@
-<h1>Membership Requests</h1>
+<h3 class="mb-5">Membership Requests</h3>
 
-<div class="mt-3">
-  <div class="row g-5">
-    <div class="col">
-      <% @join_requests.each do |join_request| %>
-        <%= render join_request %>
-        <p>
-          <%= link_to "View join request", edit_guild_join_request_path(guild_id: join_request.guild_id, id: join_request.id) %>
-        </p>
-      <% end %>
 
-      <% if !@join_requests.any? %>
-        
-        <div class="alert alert-info mt-5" role="alert">
-          <h5>All set</h5>
-          <p>You have no pending requests</p>
-        </div>
-      <% end %>
-    </div>
-    
-    <div class="col-4">
-      <%= render "guilds/guild_nav", guild: @guild %>
+<% @join_requests.each do |join_request| %>
+  <div class="card border shadow bg-body rounded mb-5">
+    <div class="card-body">
+      <%= render join_request %>
+      <p>
+        <%= link_to "View join request", edit_guild_join_request_path(guild_id: join_request.guild_id, id: join_request.id) %>
+      </p>
     </div>
   </div>
-</div>
+<% end %>
+
+<% if !@join_requests.any? %>
+  <div class="alert alert-info mt-5" role="alert">
+    <h5>All set</h5>
+    <p>You have no pending requests</p>
+  </div>
+<% end %>
