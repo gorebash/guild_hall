@@ -2,8 +2,8 @@ require "test_helper"
 
 class GuildsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @guild = guilds(:one)
-    @user = users(:one)
+    @guild = guilds(:justice)
+    @user = users(:batman)
 
     sign_in (@user)
   end
@@ -26,6 +26,15 @@ class GuildsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to guild_url(Guild.last)
   end
 
+  test "should add creator to guild members" do
+    assert_difference("GuildMember.count") do
+      post guilds_url, params: { guild: { description: @guild.description, name: @guild.name } }
+    end
+
+    assert_equal Guild.last, GuildMember.last.guild
+    assert_equal @user, GuildMember.last.user
+  end
+
   test "should show guild" do
     get guild_url(@guild)
     assert_response :success
@@ -45,6 +54,10 @@ class GuildsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Guild.count", -1) do
       delete guild_url(@guild)
     end
+
+    assert_empty GuildMember.where(guild:@guild)
+    assert_empty Message.where(guild:@guild)
+    assert_empty JoinRequest.where(guild:@guild)
 
     assert_redirected_to guilds_url
   end

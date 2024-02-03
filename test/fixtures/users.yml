@@ -4,12 +4,12 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one:
+batman:
   email: batman@example.com
   username: batman
   birth_date: 01-01-1980
 
-two:
+ironman:
   email: ironman@example.com
   username: ironman
   birth_date: 02-02-1990

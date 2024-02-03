@@ -5,6 +5,6 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  guild: one
-  user: one
+  guild: justice
+  user: batman
   body: test1

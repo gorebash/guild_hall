@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: one
-  guild: one
+  user: batman
+  guild: justice
 
 two:
-  user: two
-  guild: two
+  user: ironman
+  guild: avengers

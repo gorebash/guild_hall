@@ -4,10 +4,10 @@ class GuildsController < ApplicationController
 
   # GET /guilds or /guilds.json
   def index
-    if !user_signed_in?
-      #@guilds = current_user.guilds
-      redirect_to home_path
-    end
+    # if !user_signed_in?
+    #   @guilds = current_user.guilds
+    #   redirect_to home_path
+    # end
   end
 
   # GET /guilds/1 or /guilds/1.json
@@ -58,6 +58,12 @@ class GuildsController < ApplicationController
 
   # DELETE /guilds/1 or /guilds/1.json
   def destroy
+
+    #todo: ensure proper role
+
+    GuildMember.where(guild:@guild).destroy_all
+    Message.where(guild:@guild).destroy_all
+    JoinRequest.where(guild:@guild).destroy_all
     @guild.destroy
 
     respond_to do |format|

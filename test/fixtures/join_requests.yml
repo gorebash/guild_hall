@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: one
-  guild: one
+  user: ironman
+  guild: avengers
   invite_code: MyString
   status: pending
 
 two:
-  user: two
-  guild: two
+  user: batman
+  guild: justice
   invite_code: MyString
   status: pending

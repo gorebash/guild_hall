@@ -29,8 +29,10 @@ class ApplicationController < ActionController::Base
   def set_current_guild
     if user_signed_in?
       #todo: save/read from session
-      @guild = current_user.guilds.first #GuildMember.where(user_id: current_user.id).first.guild
+      @guild = GuildMember.where(user_id: current_user.id).first.guild
       @guilds = current_user.guilds
+    else
+      redirect_to home_path
     end
   end
 end

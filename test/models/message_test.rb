@@ -4,8 +4,8 @@ class MessageTest < ActiveSupport::TestCase
 
   test "creates valid message" do
     @message = Message.new
-    @message.user = users(:one)
-    @message.guild = guilds(:one)
+    @message.user = users(:batman)
+    @message.guild = guilds(:justice)
     @message.body = "test 1"
 
     assert @message.valid?
@@ -19,7 +19,7 @@ class MessageTest < ActiveSupport::TestCase
 
   test "message requires guild" do
     @message = Message.new
-    @message.user = users(:one)
+    @message.user = users(:batman)
     @message.body = "test 1"
 
     assert_not @message.save, "saved message with no guild"
