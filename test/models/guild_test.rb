@@ -1,14 +1,16 @@
 require "test_helper"
 
 class GuildTest < ActiveSupport::TestCase
-  test "should not create guild without description" do
+
+  test "should require name" do
     @guild = Guild.new
-    assert_not Guild.save, "saved guild without description"
+    assert_not @guild.save, "saved guild without name"
   end
 
-  # test "guild should generate an invite code" do
-  #   @guild = Guild.new(name:"guild 1", description: "guild 1 desc")
-  #   assert @guild.invite_code
-  #   assert @guild.valid?
-  # end
+  test "should generate an invite code" do
+    @guild = Guild.new(name:"guild 1", description: "guild 1 desc")
+    assert @guild.valid?
+    assert @guild.save
+    assert @guild.invite_code != nil
+  end
 end

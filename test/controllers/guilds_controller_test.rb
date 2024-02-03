@@ -3,6 +3,9 @@ require "test_helper"
 class GuildsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @guild = guilds(:one)
+    @user = users(:one)
+
+    sign_in (@user)
   end
 
   test "should get index" do

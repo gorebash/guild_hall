@@ -4,9 +4,11 @@ class JoinRequest < ApplicationRecord
 
   validates :invite_code, presence: true
 
-  enum status: {
-    pending: 0,
-    declined: 1,
-    accepted: 2
-  }
+  # enum status: {
+  #   pending: 0,
+  #   declined: 1,
+  #   accepted: 2
+  # }, default: :pending
+
+  enum :status, [:pending, :declined, :accepted], default: :pending
 end

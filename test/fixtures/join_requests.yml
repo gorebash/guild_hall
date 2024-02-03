@@ -4,10 +4,10 @@ one:
   user: one
   guild: one
   invite_code: MyString
-  status: MyString
+  status: pending
 
 two:
   user: two
   guild: two
   invite_code: MyString
-  status: MyString
+  status: pending

@@ -3,7 +3,9 @@
 one:
   name: MyString
   description: MyString
+  invite_code: ABC123
 
 two:
   name: MyString
   description: MyString
+  invite_code: ABC124
