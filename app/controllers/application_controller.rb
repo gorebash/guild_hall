@@ -31,8 +31,6 @@ class ApplicationController < ActionController::Base
       #todo: save/read from session
       @guild = GuildMember.where(user_id: current_user.id).first.guild
       @guilds = current_user.guilds
-    else
-      redirect_to home_path
     end
   end
 end

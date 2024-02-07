@@ -4,7 +4,7 @@ class CreateJoinRequests < ActiveRecord::Migration[7.0]
       t.references :user, null: false, foreign_key: true
       t.references :guild, null: false, foreign_key: true
       t.string :invite_code
-      t.integer :status, null: false, default: 0
+      t.integer :status, null: false
 
       t.timestamps
     end

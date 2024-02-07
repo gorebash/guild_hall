@@ -32,7 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_27_163217) do
     t.integer "user_id", null: false
     t.integer "guild_id", null: false
     t.string "invite_code"
-    t.integer "status", default: 0, null: false
+    t.integer "status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["guild_id"], name: "index_join_requests_on_guild_id"
