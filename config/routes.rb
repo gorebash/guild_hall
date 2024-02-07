@@ -5,8 +5,6 @@ Rails.application.routes.draw do
   root 'guilds#index'
   
   resources :guilds do
-    resources :join_requests, except: [:new, :create, :show]
-
     get 'message', to: 'messages#new'
     post 'message', to: 'messages#create'
   end
@@ -15,8 +13,7 @@ Rails.application.routes.draw do
 
   get 'home', to:'home#index'
 
-  get 'join_request', to:'join_requests#new'
-  post 'join_requests', to:'join_requests#create'
+  resources :join_requests, except: [:show]
 
   get 'members', to:'guild_members#index'
 

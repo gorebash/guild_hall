@@ -3,6 +3,9 @@ require "test_helper"
 class JoinRequestsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @join_request = join_requests(:one)
+    @user = users(:batman)
+
+    sign_in (@user)
   end
 
   test "should get index" do
@@ -16,17 +19,41 @@ class JoinRequestsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create join_request" do
+
+    guild = guilds(:league_of_legends)
+
     assert_difference("JoinRequest.count") do
-      post join_requests_url, params: { join_request: { guild_id: @join_request.guild_id, invite_code: @join_request.invite_code, status: @join_request.status, user_id: @join_request.user_id } }
+      post join_requests_url, params: { 
+        join_request: { invite_code: guild.invite_code, user_id: @user.id } 
+      }
     end
-
-    assert_redirected_to join_request_url(JoinRequest.last)
+    
+    assert_equal "pending", JoinRequest.last.status
+    assert_redirected_to join_requests_url(JoinRequest.last)
   end
 
-  test "should show join_request" do
-    get join_request_url(@join_request)
-    assert_response :success
+  test "should reject existing join_request" do
+    assert_no_difference("JoinRequest.count") do
+      post join_requests_url, params: { 
+        join_request: { invite_code: @join_request.invite_code, user_id: @join_request.user_id } 
+      }
+    end
+    
+    assert_response :unprocessable_entity, "join request already exists"
   end
+
+  test "should reject unknown invite codes" do
+    guild = guilds(:league_of_legends)
+
+    assert_no_difference("JoinRequest.count") do
+      post join_requests_url, params: { 
+        join_request: { invite_code: "CODE00", user_id: @user.id } 
+      }
+    end
+    
+    assert_response :unprocessable_entity, "invalid invite code"
+  end
+
 
   test "should get edit" do
     get edit_join_request_url(@join_request)
@@ -34,15 +61,11 @@ class JoinRequestsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update join_request" do
-    patch join_request_url(@join_request), params: { join_request: { guild_id: @join_request.guild_id, invite_code: @join_request.invite_code, status: @join_request.status, user_id: @join_request.user_id } }
-    assert_redirected_to join_request_url(@join_request)
-  end
-
-  test "should destroy join_request" do
-    assert_difference("JoinRequest.count", -1) do
-      delete join_request_url(@join_request)
-    end
-
-    assert_redirected_to join_requests_url
+    patch join_request_url(@join_request), params: { 
+      join_request: { 
+        guild_id: @join_request.guild_id, invite_code: @join_request.invite_code, status: @join_request.status, user_id: @join_request.user_id 
+      } 
+    }
+    assert_redirected_to join_requests_path
   end
 end

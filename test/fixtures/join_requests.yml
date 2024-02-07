@@ -2,12 +2,12 @@
 
 one:
   user: ironman
-  guild: avengers
-  invite_code: MyString
+  guild: justice
+  invite_code: CODE01
   status: pending
 
 two:
   user: batman
-  guild: justice
-  invite_code: MyString
+  guild: avengers
+  invite_code: CODE02
   status: pending

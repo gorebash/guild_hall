@@ -4,7 +4,7 @@ class JoinRequestsController < ApplicationController
 
   # GET /join_requests or /join_requests.json
   def index
-    @guild = Guild.find(params[:guild_id])
+    #@guild = Guild.find(params[:guild_id])
 
     # user must be a member of the current guild
     # todo: user must also be an admin in the current guild.
@@ -31,6 +31,7 @@ class JoinRequestsController < ApplicationController
 
   # POST /join_requests or /join_requests.json
   def create
+    
     @join_request = JoinRequest.new(join_request_params)
     @join_request.user = current_user
     @join_request.guild = Guild.where(invite_code: @join_request.invite_code).take
@@ -83,7 +84,7 @@ class JoinRequestsController < ApplicationController
         end
         
         flash[:success] = "Membership was #{@join_request.status}."
-        format.html { redirect_to guild_join_requests_path }
+        format.html { redirect_to join_requests_path }
         
       else
         flash[:danger] = "There was a problem saving the join decision."
@@ -96,7 +97,7 @@ class JoinRequestsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_join_request
       @join_request = JoinRequest.find(params[:id])
-      @guild = Guild.find(params[:guild_id])
+      #@guild = Guild.find(params[:guild_id])
       @join_user = User.find(@join_request.user_id)
     end
 

@@ -55,13 +55,13 @@
     
     <div class="row g-3">
       <div class="col-auto">
-        <%= form_with model: @join_request, url: guild_join_request_path do |form| %>
+        <%= form_with model: @join_request, url: join_request_path do |form| %>
           <%= form.hidden_field :status, value: "accepted" %>
           <%= form.submit "Approve", class: "btn btn-primary" %>
         <% end %>
       </div>
       <div class="col-auto">
-        <%= form_with model: @join_request, url: guild_join_request_path do |form| %>
+        <%= form_with model: @join_request, url: join_request_path do |form| %>
           <%= form.hidden_field :status, value: "declined" %>
           <%= form.submit "Ignore request", class: "btn" %>
         <% end %>
@@ -73,5 +73,5 @@
 
 
 <div class="mt-4">
-  <%= link_to "Back to join requests", guild_join_requests_path %>
+  <%= link_to "Back to join requests", join_requests_path %>
 </div>
