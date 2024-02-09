@@ -12,6 +12,11 @@ class GuildsController < ApplicationController
 
   # GET /guilds/1 or /guilds/1.json
   def show
+    @guild ||= Guild.find(params[:id]) if params[:id]
+    if (@guild)
+      session[:guild] = @guild
+    end
+
     @message = Message.new
     @messages = @guild.messages.custom_display
   end
@@ -19,6 +24,7 @@ class GuildsController < ApplicationController
   # GET /guilds/new
   def new
     @guild = Guild.new
+    session[:guild] = @guild
   end
 
   # GET /guilds/1/edit
@@ -34,6 +40,7 @@ class GuildsController < ApplicationController
 
     respond_to do |format|
       if saved
+        session[:guild] = @guild
         format.html { redirect_to guild_url(@guild), notice: 'Guild was successfully created.' }
         format.json { render :show, status: :created, location: @guild }
       else
