@@ -23,7 +23,7 @@ class GuildsControllerTest < ActionDispatch::IntegrationTest
       post guilds_url, params: { guild: { description: @guild.description, name: @guild.name } }
     end
 
-    assert_equal Guild.last, session[:guild]
+    assert_equal Guild.last.id, session[:guild_id]
     assert_redirected_to guild_url(Guild.last)
   end
 
@@ -41,7 +41,7 @@ class GuildsControllerTest < ActionDispatch::IntegrationTest
     get guild_url(guild)
 
     assert_response :success
-    assert_equal guild, session[:guild]
+    assert_equal guild.id, session[:guild_id]
   end
 
   test "should get edit" do
