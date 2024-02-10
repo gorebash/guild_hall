@@ -3,7 +3,9 @@
 one:
   user: batman
   guild: justice
+  role: owner
 
 two:
   user: ironman
   guild: avengers
+  role: owner

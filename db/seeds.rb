@@ -13,16 +13,16 @@ users = User.create([
 ])
 
 guilds = Guild.create([
-  { name: "Bananaramas", description: "Its all about bananas" },
+  { name: "Bananaramas", description: "We're sorry" },
   { name: "Coram Deo Co-op", description: "Homeschool coop" },
   { name: "Breakfast club", description: "Detention hall mostly" },
 ])
 
 GuildMember.create([
-  { user_id: users[0].id, guild_id: guilds[0].id },
-  { user_id: users[0].id, guild_id: guilds[1].id },
-  { user_id: users[1].id, guild_id: guilds[1].id },
-  { user_id: users[1].id, guild_id: guilds[2].id },
+  { user_id: users[0].id, guild_id: guilds[0].id, role: :owner },
+  { user_id: users[0].id, guild_id: guilds[1].id, role: :member },
+  { user_id: users[1].id, guild_id: guilds[1].id, role: :owner },
+  { user_id: users[1].id, guild_id: guilds[2].id, role: :admin },
 ])
 
 JoinRequest.create([
