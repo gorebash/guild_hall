@@ -10,6 +10,9 @@ class Guild < ApplicationRecord
         self.invite_code = generate_unique_token(6).upcase
     end
 
+
+    private
+
     def generate_unique_token(length)
         loop do
             token = SecureRandom.hex(length / 2)[0, length]

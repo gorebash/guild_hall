@@ -29,13 +29,12 @@ class ApplicationController < ActionController::Base
   def set_current_guild
     if user_signed_in?
       
-      #@guild ||= Guild.find(session[:guild_id]) if session[:guild_id]
       @guild = Guild.find(session[:guild_id]) if session[:guild_id]
       if !@guild
         @guild = GuildMember.where(user_id: current_user.id).first.guild
       end
       
-      # todo: replace with session
+      # todo: store in session
       @guilds = current_user.guilds
 
     end

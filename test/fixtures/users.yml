@@ -13,3 +13,8 @@ ironman:
   email: ironman@example.com
   username: ironman
   birth_date: 02-02-1990
+
+user_with_no_guild:
+  email: noguild@example.com
+  username: noguild
+  birth_date: 02-02-1990
