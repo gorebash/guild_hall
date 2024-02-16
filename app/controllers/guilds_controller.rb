@@ -4,10 +4,10 @@ class GuildsController < ApplicationController
 
   # GET /guilds or /guilds.json
   def index
-    # if !user_signed_in?
-    #   @guilds = current_user.guilds
-    #   redirect_to home_path
-    # end
+    if !user_signed_in?
+      #@guilds = current_user.guilds
+      redirect_to home_path
+    end
   end
 
   # GET /guilds/1 or /guilds/1.json

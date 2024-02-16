@@ -21,4 +21,12 @@ class UsersHelperTest < ActionView::TestCase
       assert_nil guild_role
       assert_not can_edit_guild?
     end
+
+    test "unauthenticated users do not error" do
+      @user = nil
+      assert_nothing_raised do
+        guild_role
+        can_edit_guild?
+      end      
+    end
 end
