@@ -1,0 +1,11 @@
+<%= form_with(model: member) do |f| %>
+  
+  <div class="input-group mt-3">
+    <%= f.select(:role,
+      options_for_select(GuildMember.roles.map { |key, value| [key.titleize, GuildMember.roles.key(value)] }, member.role), 
+      {}, { :class => "form-select" }) %>
+
+    <%= f.submit "Save", class: "btn btn-primary" %>
+  </div>
+
+<% end %>
