@@ -1,5 +1,6 @@
-
-<h3>Guild Members</h3>
+<% content_for :title do %>
+  Guild Members
+<% end %>
 
 <% @users.each do |user| %>
   <div class="card border shadow bg-body rounded mb-3">
@@ -12,14 +13,13 @@
       <p><%= user.birth_date %></p>
       <p><i>Joined <%= time_ago_in_words(user.created_at) %> ago</i></p>
       </div>
-      <div class="card-footer">
-      <div class="alert alert-dark mt-3" role="alert">
-        <p>Change role</p>
-
-        <% if can_edit_guild? %>
-          <%= render "edit", member:membership_for(user, @guild), guild:@guild %>
-        <% end %>
-      </div>
-    </div>
+      <% if can_edit_guild? %>
+        <div class="card-footer">
+          <div class="alert alert-dark mt-3" role="alert">
+            <p>Change role</p>
+            <%= render "edit", member:membership_for(user, @guild), guild:@guild %>
+          </div>
+        </div>
+      <% end %>
   </div>
 <% end %>
