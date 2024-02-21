@@ -9,3 +9,13 @@ two:
   user: ironman
   guild: avengers
   role: owner
+
+member_role:
+  user: user_with_member_role
+  guild: justice
+  role: member
+
+admin_role:
+  user: user_admin_wrong_guild
+  guild: league_of_legends
+  role: admin

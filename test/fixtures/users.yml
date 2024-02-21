@@ -18,3 +18,13 @@ user_with_no_guild:
   email: noguild@example.com
   username: noguild
   birth_date: 02-02-1990
+
+user_with_member_role:
+  email: member-role@example.com
+  username: guildmember
+  birth_date: 02-02-2010
+
+user_admin_wrong_guild:
+  email: admin-wrong-guild@example.com
+  username: guildmember
+  birth_date: 02-02-2010

@@ -1,24 +1,12 @@
 class JoinRequestsController < ApplicationController
   before_action :authenticate_user!
+  before_action :require_permission, only: %i[ update, index ]
   before_action :set_join_request, only: %i[ show edit update destroy ]
 
   # GET /join_requests or /join_requests.json
   def index
-    #@guild = Guild.find(params[:guild_id])
-
-    # user must be a member of the current guild
-    # todo: user must also be an admin in the current guild.
-    if (GuildMember.exists?(guild_id: @guild.id, user: current_user))
-      @join_requests = JoinRequest.where guild_id:@guild.id, status: "pending"
-    else
-      flash[:danger] = "You are not able to view requests for this guild."
-      format.html { render guilds_path, status: :unprocessable_entity }
-    end
+    @join_requests = JoinRequest.where guild_id:@guild.id, status: "pending"
   end
-
-  # GET /join_requests/1 or /join_requests/1.json
-  # def show
-  # end
 
   # GET /join_requests/new
   def new
@@ -61,17 +49,9 @@ class JoinRequestsController < ApplicationController
 
   # PATCH/PUT /join_requests/1 or /join_requests/1.json
   def update
-
-    # todo: restrict to admin role in guild as well
-    if !(GuildMember.exists? user: current_user, guild: @guild)
-      flash[:danger] = "You are not authorized to process membership requests."
-      return render :new, status: :unprocessable_entity
-    end
-
     respond_to do |format|
       if @join_request.update(join_approval_params)
 
-        # todo: assign newly created members to an assigned role
         if (@join_request.status == "approved")
           membership = GuildMember.new(:user_id, :guild_id)
           membership.user = @join_request.user
@@ -94,19 +74,32 @@ class JoinRequestsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_join_request
-      @join_request = JoinRequest.find(params[:id])
-      #@guild = Guild.find(params[:guild_id])
-      @join_user = User.find(@join_request.user_id)
-    end
+    
+  def set_join_request
+    @join_request = JoinRequest.find(params[:id])
+    @join_user = User.find(@join_request.user_id)
+  end
 
-    # Only allow a list of trusted parameters through.
-    def join_request_params
-      params.require(:join_request).permit(:invite_code)
-    end
+  def join_request_params
+    params.require(:join_request).permit(:invite_code)
+  end
 
-    def join_approval_params
-      params.require(:join_request).permit(:status)
+  def join_approval_params
+    params.require(:join_request).permit(:status)
+  end
+
+  def require_permission
+    no_access_redirect("You are not able to view requests for this guild.") if 
+      !GuildMember.exists?(guild_id: @guild.id, user: current_user)
+  
+    no_access_redirect("You are not an administrator for this guild.") if 
+      !can_edit_guild?  
+  end
+
+  def no_access_redirect(message)
+    respond_to do |format|
+      flash[:danger] = message
+      format.html { redirect_to guild_url(@guild) }
     end
+  end
 end

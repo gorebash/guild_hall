@@ -54,7 +54,6 @@ class JoinRequestsControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_entity, "invalid invite code"
   end
 
-
   test "should get edit" do
     get edit_join_request_url(@join_request)
     assert_response :success
@@ -68,4 +67,13 @@ class JoinRequestsControllerTest < ActionDispatch::IntegrationTest
     }
     assert_redirected_to join_requests_path
   end
+
+  test "should require edit permissions" do
+    @guild = guilds(:justice)
+    sign_in users(:user_with_member_role)
+
+    get join_requests_url
+    assert_redirected_to guild_url(@guild)
+  end
+
 end

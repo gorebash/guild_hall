@@ -62,6 +62,7 @@ class GuildsController < ApplicationController
   # DELETE /guilds/1 or /guilds/1.json
   def destroy
 
+    #todo: delete not hooked up yet
     #todo: ensure proper role
 
     GuildMember.where(guild:@guild).destroy_all
