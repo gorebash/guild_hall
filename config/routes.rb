@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   
   root 'guilds#index'
-  devise_for :users
+
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
+  # :controllers => { registrations: 'users/registrations' }
   
   resources :guild_members, except: [:show]
   resources :join_requests, except: [:show]

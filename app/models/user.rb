@@ -15,4 +15,6 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false }
 
   validates_date :birth_date, on_or_before: lambda { Date.current }
+
+  has_one_attached :image
 end
