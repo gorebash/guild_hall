@@ -1,14 +1,28 @@
 @import 'bootstrap';
 
+$navbar-brand-color: $indigo;
+$navbar-dark-brand-color: $indigo;
+$navbar-light-brand-color: $indigo;
+
 $theme-colors: (
   primary: $indigo
 );
 
-.bi { color:$indigo-300; }
 
 #message-container {
   height: 450px;
   overflow: auto;
 }
 
-h4.title { color:$indigo-300; }
+.navbar .navbar-brand { color:$indigo-200 !important; }
+.bi           { color:$indigo-300; }
+h4.title      { color:$indigo-300; }
+.profile-icon { height:50px; width:50px; display:inline-block; border-radius:50%; }
+
+
+.hero-default { 
+  height: 15em;
+  padding: 5em;
+  background: rgb(238,174,202);
+  background: linear-gradient(45deg, rgba(238,174,202,1) 15%, rgba(148,187,233,1) 65%, rgba(212,255,246,1) 100%); 
+}

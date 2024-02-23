@@ -23,9 +23,10 @@
         <%= yield %>
       <% else %>
 
-        <h1><%= link_to @guild.name, guild_path(@guild), class: "navbar-brand mb-0 h1" %></h1>
-        <h6><%= @guild.description %></h6>
-
+        <div class="hero hero-default">
+          <h1><%= link_to @guild.name, guild_path(@guild), class: "navbar-brand mb-0 h1" %></h1>
+          <h6><%= @guild.description %></h6>
+        </div>
         <div class="mt-5">
           <div class="row">
             <h4 class="title"><%= yield :title %></h4>

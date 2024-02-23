@@ -12,8 +12,8 @@
       <div class="d-flex">
         <% if user_signed_in? %>
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Guild</a>
+            <li class="nav-item dropdown nav-item h-100">
+              <a class="nav-link dropdown-toggle" style="margin-top:.7em;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Guild</a>
               <ul class="dropdown-menu">
                 <% current_user.guilds.each do |guild| %>
                   <li><%= link_to guild.name, guild_path(guild), class: "dropdown-item" %></li>
@@ -23,12 +23,11 @@
                 <li><%= link_to "Create a Guild", new_guild_path, class: "dropdown-item" %></li>
               </ul>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown nav-item h-100">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <% if current_user.image.attached? %>
-                  <%= image_tag(current_user.image, style:"height:50px; width:50px;") %>
+                  <%= image_tag(current_user.image, class:"profile-icon") %>
                 <% end %>
-                <%= current_user.username %>
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to current_user.username, edit_user_registration_path(current_user), class: "dropdown-item" %></li>
