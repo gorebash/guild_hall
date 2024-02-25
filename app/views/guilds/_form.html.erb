@@ -21,6 +21,16 @@
     <%= form.text_field :description %>
   </div>
 
+  <hr/>
+
+  <div class="input-field">
+    <p>Add a custom banner image for your guild</p>
+    <%= form.label :banner_image %><br />
+    <%= form.file_field :banner_image %>
+  </div>
+
+  <hr/>
+
   <div>
     <%= form.submit %>
   </div>

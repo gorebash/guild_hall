@@ -76,4 +76,23 @@ class JoinRequestsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to guild_url(@guild)
   end
 
+  # test "approval requests should set status to approved" do
+  #   assert.fail
+  # end
+
+  # test "deny requests should set status to denied" do
+  #   assert.fail
+  # end
+
+  # test "current_user must belong to guild to update join_requests" do
+  #   assert.fail
+  # end
+
+  # test "current_user must be a guild admin or owner to update join_requests" do
+  #   assert.fail
+  # end
+
+  # test "accepted join_requests should create new guild_member" do
+  #   assert.fail
+  # end
 end

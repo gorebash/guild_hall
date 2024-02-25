@@ -43,18 +43,17 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'bootsnap', require: false
 
 # gem 'jquery-rails'
-# gem 'semantic-ui-sass'
 gem 'bootstrap', '~> 5.3'
 # gem 'dartsass-sprockets'
 
 # Use Sass to process CSS
 gem 'sassc-rails'
-
 gem 'devise'
 gem 'validates_timeliness', '~> 7.0.0.beta1'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
+#gem "mini_magick"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

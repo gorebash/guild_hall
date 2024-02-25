@@ -14,15 +14,17 @@ $theme-colors: (
   overflow: auto;
 }
 
-.navbar .navbar-brand { color:$indigo-200 !important; }
-.bi           { color:$indigo-300; }
-h4.title      { color:$indigo-300; }
-.profile-icon { height:50px; width:50px; display:inline-block; border-radius:50%; }
+.navbar .navbar-brand { }
+.bi                 { color:$indigo-300; }
+.profile-icon       { height:50px; width:50px; display:inline-block; border-radius:50%; }
+h1.title            { color:$indigo-300; }
 
-
-.hero-default { 
-  height: 15em;
-  padding: 5em;
+.hero               { border-radius:1em; width:100%; height:340px; overflow:hidden; position:relative; 
+                      box-shadow: 0px 0px 4px 2px rgba(0,0,0,.25); }
+.hero img           { width:100%; height:100%; object-fit:cover; }
+.hero .title        { position:absolute; bottom:10%; left:5%; }
+.hero .title h1     { font-size:1.8em; text-shadow: black 0.0em 0.0em 0.14em }
+.hero-default       { 
   background: rgb(238,174,202);
   background: linear-gradient(45deg, rgba(238,174,202,1) 15%, rgba(148,187,233,1) 65%, rgba(212,255,246,1) 100%); 
 }

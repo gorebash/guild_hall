@@ -23,13 +23,21 @@
         <%= yield %>
       <% else %>
 
-        <div class="hero hero-default">
-          <h1><%= link_to @guild.name, guild_path(@guild), class: "navbar-brand mb-0 h1" %></h1>
-          <h6><%= @guild.description %></h6>
-        </div>
+        <% if @guild.id %>
+          <div class="hero hero-default">
+            <% if @guild.banner_image.attached? %>
+              <%= image_tag(@guild.banner_image) %>
+            <% end %>
+            <div class="title">
+              <h1><%= link_to @guild.name, guild_path(@guild), class: "navbar-brand mb-0 h1" %></h1>
+              <h4><%= @guild.description %></h4>
+            </div>
+          </div>
+        <% end %>          
+
         <div class="mt-5">
-          <div class="row">
-            <h4 class="title"><%= yield :title %></h4>
+          <div class="row mb-4">
+            <h1 class="title"><%= yield :title %></h1>
           </div>
           <div class="row g-4">
             <div class="col">
