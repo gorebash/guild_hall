@@ -14,7 +14,7 @@ users = User.create([
 
 guilds = Guild.create([
   { name: "Bananaramas", description: "We're sorry" },
-  { name: "Coram Deo Co-op", description: "Homeschool coop" },
+  { name: "SVCH", description: "Spokane Valley Christian Homeschool Co-op" },
   { name: "Breakfast club", description: "Detention hall mostly" },
 ])
 

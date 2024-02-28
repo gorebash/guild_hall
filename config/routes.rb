@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   
   root 'guilds#index'
-
+  
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   
   resources :guild_members, except: [:show]
   resources :join_requests, except: [:show]
+  resources :guild_events
   resources :guilds do
     get 'message', to: 'messages#new'
     post 'message', to: 'messages#create'

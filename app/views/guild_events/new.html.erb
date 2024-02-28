@@ -1,0 +1,12 @@
+
+<% content_for :title do %>
+  <h1 class="title">New guild event</h1>
+<% end %>
+
+<%= render "form", guild_event: @guild_event %>
+
+<br>
+
+<div>
+  <%= link_to "Back to guild events", guild_events_path %>
+</div>
