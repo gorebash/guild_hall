@@ -29,3 +29,8 @@ JoinRequest.create([
   { user_id: users[0].id, guild_id: guilds[2].id, invite_code: guilds[2].invite_code },
   { user_id: users[1].id, guild_id: guilds[0].id, invite_code: guilds[0].invite_code },
 ])
+
+GuildEvent.create([
+  { user_id:2, starts:"2024-04-10", location:"Gorehold", description: "Come and celebrate Ashley", name: "Ashleys Birthday!" },
+  { user_id:2, starts:"2024-04-16", location:"Gorehold", description: "Come and celebrate Josh", name: "Joshies Birthday" },
+])

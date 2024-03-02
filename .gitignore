@@ -36,3 +36,5 @@
 
 *.drawio.bkp
 *.drawio.dtmp
+
+node_modules

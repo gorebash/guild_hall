@@ -1,16 +1,17 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title do %>
-  <h1>Upcoming Guild Events</h1>
+  <h1>Upcoming Merry Feasts</h1>
 <% end %>
 
 <div id="guild_events">
-  <% @guild_events.each do |guild_event| %>
-    <%= render guild_event %>
-    <p>
-      <%= link_to "Show this guild event", guild_event %>
-    </p>
-  <% end %>
+  <div class="container">
+    <div class="row">
+      
+        <% @guild_events.each do |guild_event| %>
+          <%= render guild_event %>
+        <% end %>
+      
+    </div>
+  </div>
 </div>
 
 <%= link_to "New guild event", new_guild_event_path %>

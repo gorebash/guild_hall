@@ -8,6 +8,7 @@ class CreateGuildEvents < ActiveRecord::Migration[7.0]
       t.datetime :ends
       t.string :location
       t.integer :status, null:false
+      t.integer :theme, null:false
 
       t.timestamps
     end
