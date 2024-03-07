@@ -15,6 +15,10 @@
     </div>
 </div>
 
+<% if @events.any? %>
+    <%= render "guild_events/guild_event_summary", events:@events %>
+<% end %>
+
 <% if guild.id? && can_edit_guild? %>
     <div class="card shadow rounded mt-3">
         <div class="alert alert-secondary mb-0" role="alert">

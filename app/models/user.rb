@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :guild_members
   has_many :guilds, through: :guild_members
   has_many :join_requests
+  has_many :guild_events
 
   validates :username,
             presence: true,

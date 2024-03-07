@@ -3,6 +3,7 @@ class Guild < ApplicationRecord
     has_many :users, through: :guild_members
     has_many :messages
     has_many :join_requests
+    has_many :guild_events
 
     validates :name, :description, presence: true
 

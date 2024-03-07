@@ -78,12 +78,10 @@ class GuildsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_guild
     @guild = Guild.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def guild_params
     params.require(:guild).permit(:name, :description, :banner_image)
   end

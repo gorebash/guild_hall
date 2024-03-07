@@ -1,38 +1,41 @@
 
 
 <div class="col-lg-12">
-<div class="card bg-<%= guild_event.theme %> bg-gradient2 card-margin" id="<%= dom_id guild_event %>">
-    <div class="card-header py-3">
-        <h5 class="card-title"><%= guild_event.name %></h5>
-    </div>
-    <div class="card-body pt-3">
-        <div class="widget-49">
-            <div class="widget-49-title-wrapper">
-                <div class="widget-49-date-<%= guild_event.theme %>">
-                    <span class="widget-49-date-day"><%= guild_event.starts.strftime('%d') %></span>
-                    <span class="widget-49-date-month"><%= guild_event.starts.strftime('%b').upcase %></span>
+    <div class="card bg-<%= guild_event.theme %> bg-gradient2 card-margin" id="<%= dom_id guild_event %>">
+        <div class="card-header py-3">
+            <h5 class="card-title"><%= guild_event.name %></h5>
+        </div>
+        <div class="card-body pt-3">
+            <div class="widget-49">
+                <div class="widget-49-title-wrapper">
+                    <div class="widget-49-date-<%= guild_event.theme %>">
+                        <span class="widget-49-date-day"><%= guild_event.starts.strftime('%d') %></span>
+                        <span class="widget-49-date-month"><%= guild_event.starts.strftime('%b').upcase %></span>
+                    </div>
+                    <div class="widget-49-meeting-info">
+                        <span class="widget-49-pro-title"><%= guild_event.status.titleize %></span>
+                        <span class="widget-49-meeting-time"><%= guild_event.starts.strftime('%I:%M:%p') %>
+                        <% if guild_event.ends %>
+                            &ndash; <%= guild_event.ends.strftime('%I:%M:%p') %>
+                        <% end %>
+                        </span>
+                    </div>
                 </div>
-                <div class="widget-49-meeting-info">
-                    <span class="widget-49-pro-title"><%= guild_event.status.titleize %></span>
-                    <span class="widget-49-meeting-time"><%= guild_event.starts.strftime('%I:%M:%p') %>
-                      <% if guild_event.ends %>
-                        &ndash; <%= guild_event.ends.strftime('%I:%M:%p') %>
-                      <% end %>
-                    </span>
+                
+                <div class="widget-49-meeting-points">
+                    <p class="description pt-4"><%= guild_event.description %></p>
+
+                    <strong>Where to be:</strong>
+                    <p><%= guild_event.location %></p>
+
+                    <strong>Organizer:</strong>
+                    <p><%= guild_event.user.username %></p>
+
+                    <strong>Guild:</strong>
+                    <p><%= guild_event.guild.name %></p>
                 </div>
+
             </div>
-            
-            <div class="widget-49-meeting-points">
-              <p class="description pt-4"><%= guild_event.description %></p>
-
-              <strong>Where to be:</strong>
-              <p><%= guild_event.location %></p>
-
-              <strong>Organizer:</strong>
-              <p><%= guild_event.user.username %></p>
-            </div>
-
-          </div>
         </div>
         <div class="card-footer">
             <div class="widget-49-meeting-action">

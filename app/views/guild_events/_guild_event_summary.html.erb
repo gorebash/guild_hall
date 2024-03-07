@@ -1,0 +1,17 @@
+<div class="card border shadow rounded mt-3">
+    <div class="card-body">
+        <div class="card-title">Upcoming Feasts</div>
+        <ul class="nav flex-column">
+            <% events.each do |event| %>
+                <li class="nav-item mb-3">
+                  <span class="badge text-bg-info"><%= event.starts.strftime('%d %b at %I:%M:%p') %></span>
+                  <br/>
+                  <%= link_to event.name, event %>
+                </li>
+            <% end %>
+        </ul>
+    </div>
+    <div class="card-footer">
+      <%= link_to "New event", new_guild_event_path %>
+    </div>
+</div>

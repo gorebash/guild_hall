@@ -34,6 +34,7 @@ class ApplicationController < ActionController::Base
       
       # todo: store in session
       @guilds = current_user.guilds
+      @events = @guild.guild_events
     end
   end
 end

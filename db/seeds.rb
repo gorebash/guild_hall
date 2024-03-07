@@ -31,6 +31,9 @@ JoinRequest.create([
 ])
 
 GuildEvent.create([
-  { user_id:2, starts:"2024-04-10", location:"Gorehold", description: "Come and celebrate Ashley", name: "Ashleys Birthday!" },
-  { user_id:2, starts:"2024-04-16", location:"Gorehold", description: "Come and celebrate Josh", name: "Joshies Birthday" },
+  { user_id:0, guild_id:guilds[0].id, starts:"2024-04-10 04:00:00 PM", location:"Gorehold", description: "Big Party, you should come!", name: "Ashleys Birthday!" },
+  { user_id:1, guild_id:guilds[1].id, starts:"2024-04-10 04:00:00 PM", location:"Gorehold", description: "Come and celebrate Ashley", name: "Ashleys Birthday!" },
+  { user_id:2, guild_id:guilds[1].id, starts:"2024-04-16", ends:"2024-04-17", location:"Gorehold", description: "Come and celebrate Josh", name: "Joshies Birthday" },
+  { user_id:2, guild_id:guilds[1].id, starts:"2024-05-16", ends:"2024-05-17", location:"5432 S Road Dr, Some City, ST. 11055", description: "Has a nice short description though", name: "This is an event with a really long name that probably shouldn't be allowed at all" },
+  { user_id:0, guild_id:guilds[1].id, starts:"2024-05-24", ends:"2024-05-24", location:"5432 S Road Dr, Some City, ST. 11055", description: "We're going to bbq and bring a side and chips. Lets try this with a long description in this field. A-K bring stuff. K-Z bring some other stuff. There will be whiskey and cigars.", name: "This is an event with a really long name that probably shouldn't be allowed at all" },
 ])

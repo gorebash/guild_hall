@@ -4,7 +4,7 @@ class GuildEventsController < ApplicationController
 
   # GET /guild_events or /guild_events.json
   def index
-    @guild_events = GuildEvent.all
+    @guild_events = @guild.guild_events
   end
 
   # GET /guild_events/1 or /guild_events/1.json
@@ -24,6 +24,7 @@ class GuildEventsController < ApplicationController
   def create
     @guild_event = GuildEvent.new(guild_event_params)
     @guild_event.user = current_user
+    @guild_event.guild = @guild
 
     respond_to do |format|
       if @guild_event.save
