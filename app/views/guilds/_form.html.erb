@@ -11,27 +11,27 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
-  </div>
-
-  <hr/>
-
-  <div class="input-field">
-    <p>Add a custom banner image for your guild</p>
-    <%= form.label :banner_image %><br />
-    <%= form.file_field :banner_image %>
+  <div class="mb-3">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_field :description, class: "form-control" %>
   </div>
 
   <hr/>
 
-  <div>
-    <%= form.submit %>
+  <div class="mb-3">
+    <p>Add an eye-popping banner image for your guild</p>
+    <%= form.label :banner_image, class: "form-label" %><br />
+    <%= form.file_field :banner_image, class: "form-control" %>
+  </div>
+
+  <hr/>
+
+  <div class="mb-3">
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

@@ -5,10 +5,15 @@
 <% @users.each do |user| %>
   <div class="card border shadow bg-body rounded mb-3">
     <div class="card-body">
-      <h6 class="card-title">
-        <p class="form-label badge text-bg-secondary"><%= membership_for(user, @guild).role.titleize %></p>
-      </h6>
-      <h5 class="card-title"><%= user.username %></h5>
+        
+      <div class="d-flex">
+        <h2 class="card-title flex-grow-1">
+          <%= image_tag(current_user.avatar, class: "profile-icon") %>
+          <span class="mx-2"><%= user.username %></span>
+        </h2>
+        <p class="badge text-bg-success mx-3 align-self-center"><%= membership_for(user, @guild).role.titleize %></p>
+      </div>
+
       <p><%= user.email %></p>
       <p><%= user.birth_date %></p>
       <p><i>Joined <%= time_ago_in_words(user.created_at) %> ago</i></p>
