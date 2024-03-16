@@ -1,17 +1,14 @@
 <% content_for :title do %>
-  <h1>Upcoming Merry Feasts</h1>
+  <div class="d-flex align-items-center">
+    <h1 class="flex-grow-1">Upcoming Merry Feasts</h1>
+    <%= link_to "Create New Event", new_guild_event_path, class: "btn btn-primary text-end" %>
+  </div>
 <% end %>
 
 <div id="guild_events">
-  <div class="container">
-    <div class="row">
-      
-        <% @guild_events.each do |guild_event| %>
-          <%= render guild_event %>
-        <% end %>
-      
-    </div>
+  <div class="row">
+    <% @guild_events.each do |guild_event| %>
+      <%= render guild_event %>
+    <% end %>
   </div>
 </div>
-
-<%= link_to "New guild event", new_guild_event_path %>

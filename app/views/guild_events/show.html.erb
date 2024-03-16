@@ -7,9 +7,11 @@
 
 <%= render @guild_event %>
 
-<div>
+<div class="mb-3">
   <%= link_to "Edit this guild event", edit_guild_event_path(@guild_event) %> |
   <%= link_to "Back to guild events", guild_events_path %>
-
-  <%= button_to "Cancel event", @guild_event, method: :delete, class: "btn btn-danger" %>
+</div>
+<div class="mb-3">
+  <%= button_to "Cancel event", @guild_event, class: "btn btn-danger",
+    data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?" } %>
 </div>

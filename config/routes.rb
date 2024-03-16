@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   
-  root 'guilds#index'
+  root 'guilds#show'
   
   devise_for :users, controllers: {
     registrations: 'users/registrations'

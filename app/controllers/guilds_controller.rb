@@ -1,6 +1,6 @@
 class GuildsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_guild, only: %i[show edit update destroy]
+  # before_action :set_guild, only: %i[show edit update destroy]
 
   # GET /guilds or /guilds.json
   def index
@@ -78,9 +78,9 @@ class GuildsController < ApplicationController
 
   private
 
-  def set_guild
-    @guild = Guild.find(params[:id])
-  end
+  # def set_guild
+  #   @guild = Guild.find(params[:id])
+  # end
 
   def guild_params
     params.require(:guild).permit(:name, :description, :banner_image)
