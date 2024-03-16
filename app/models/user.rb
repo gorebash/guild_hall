@@ -17,6 +17,14 @@ class User < ApplicationRecord
 
   validates_date :birth_date, on_or_before: lambda { Date.current }
 
+  validates :first_name,
+            presence: true,
+            length: { minimum: 3, maximum: 25 }
+  
+  validates :last_name,
+            presence: true,
+            length: { minimum: 3, maximum: 25 }
+
   has_one_attached :avatar
   validate :image_format
 

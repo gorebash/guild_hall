@@ -5,7 +5,10 @@
     <div class="d-flex justify-content-center">
       <% members.each do |user| %>
         <div class="text-center">
-          <%= image_tag(current_user.avatar, class: "profile-icon") %><br/>
+          <% if current_user.avatar.attached? %>
+            <%= image_tag(current_user.avatar, class: "profile-icon") %>
+            <br/>
+          <% end %>
           <span class="mx-2"><%= user.username %></span>
           <p class="badge text-bg-success mx-3 align-self-center"><%= membership_for(user, @guild).role.titleize %></p>
         </div>
