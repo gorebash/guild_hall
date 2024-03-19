@@ -1,19 +1,23 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+event1:
+  user: batman
+  guild: avengers
   name: MyString
   description: MyText
-  user: one
   starts: 2024-02-27 19:34:17
   ends: 2024-02-27 19:34:17
   location: MyString
+  theme: 1
   status: 1
 
-two:
+event2:
+  user: ironman
+  guild: justice
   name: MyString
   description: MyText
-  user: two
   starts: 2024-02-27 19:34:17
   ends: 2024-02-27 19:34:17
   location: MyString
+  theme: 2
   status: 1

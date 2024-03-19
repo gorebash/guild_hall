@@ -5,26 +5,36 @@
 # below each fixture, per the syntax in the comments below
 #
 batman:
+  first_name: Bruce
+  last_name: Wayne
   email: batman@example.com
   username: batman
   birth_date: 01-01-1980
 
 ironman:
+  first_name: Tony
+  last_name: Stark
   email: ironman@example.com
   username: ironman
   birth_date: 02-02-1990
 
 user_with_no_guild:
+  first_name: No
+  last_name: Guild
   email: noguild@example.com
   username: noguild
   birth_date: 02-02-1990
 
 user_with_member_role:
+  first_name: Guild
+  last_name: Member
   email: member-role@example.com
   username: guildmember
   birth_date: 02-02-2010
 
 user_admin_wrong_guild:
+  first_name: Admin
+  last_name: Wrong
   email: admin-wrong-guild@example.com
   username: guildmember
   birth_date: 02-02-2010
