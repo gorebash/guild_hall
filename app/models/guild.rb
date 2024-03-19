@@ -1,4 +1,7 @@
 class Guild < ApplicationRecord
+    extend FriendlyId
+    friendly_id :name, use: :slugged
+    
     has_many :guild_members
     has_many :users, through: :guild_members
     has_many :messages

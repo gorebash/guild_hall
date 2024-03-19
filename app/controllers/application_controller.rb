@@ -20,21 +20,17 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :birth_date])
-  end
-
   def set_current_guild
     if user_signed_in?
       
-      @guild = Guild.find(session[:guild_id]) if session[:guild_id]
+      @guild = Guild.friendly.find(session[:guild_id]) if session[:guild_id]
       if !@guild
         @guild = GuildMember.where(user_id: current_user.id).first.guild
       end
       
       # todo: store in session
       @guilds = current_user.guilds
-      @events = @guild.guild_events.where('starts >= ?', DateTime.now).take(3)
+      @events = @guild.guild_events.where('starts >= ?', DateTime.now).take(5)
     end
   end
 end

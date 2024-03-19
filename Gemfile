@@ -75,3 +75,4 @@ end
 gem 'sassc-rails'
 gem 'devise'
 gem 'validates_timeliness', '~> 7.0.0.beta1'
+gem 'friendly_id', '~> 5.5.0'

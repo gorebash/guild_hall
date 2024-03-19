@@ -1,6 +1,6 @@
 class GuildsController < ApplicationController
   before_action :authenticate_user!
-  # before_action :set_guild, only: %i[show edit update destroy]
+  before_action :set_guild, only: %i[show edit update destroy]
 
   # GET /guilds or /guilds.json
   def index
@@ -8,9 +8,12 @@ class GuildsController < ApplicationController
 
   # GET /guilds/1 or /guilds/1.json
   def show
-    @guild ||= Guild.find(params[:id]) if params[:id]
+    @guild ||= Guild.friendly.find(params[:id]) if params[:id]
     if (@guild)
       session[:guild_id] = @guild.id
+
+      # todo: overrides appcontroller, need to consolidate
+      @events = @guild.guild_events.where('starts >= ?', DateTime.now).take(5)
     end
 
     @message = Message.new
@@ -78,9 +81,11 @@ class GuildsController < ApplicationController
 
   private
 
-  # def set_guild
-  #   @guild = Guild.find(params[:id])
-  # end
+  def set_guild
+    if params[:id]
+      @guild = Guild.friendly.find(params[:id])
+    end
+  end
 
   def guild_params
     params.require(:guild).permit(:name, :description, :banner_image)
