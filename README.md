@@ -15,3 +15,6 @@ Come for the friends, stay for the friends
 - `bundle install`
 - `rails db:migrate`
 - `rails s`
+
+# linux local dev setup (optional)
+- sudo apt install libvips

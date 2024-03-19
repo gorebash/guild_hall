@@ -1,7 +1,7 @@
 <%= form_with(model: guild_event) do |form| %>
   <% if guild_event.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(guild_event.errors.count, "problem") %> was found:</h2>
+      <h2><%= pluralize(guild_event.errors.count, "problem") %> found:</h2>
 
       <ul>
         <% guild_event.errors.each do |error| %>
@@ -18,7 +18,9 @@
 
   <div class="mb-3">
     <%= form.label :description, class: "form-label" %>
-    <%= form.text_area :description, class: "form-control" %>
+    <div class="bg-secondary p-3">
+      <%= form.rich_text_area :description, class: "form-control" %>
+    </div>
   </div>
 
   <div class="mb-3">
