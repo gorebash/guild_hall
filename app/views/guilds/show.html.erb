@@ -1,5 +1,5 @@
 <% content_for :title do %>
-  <%= @guild.name %> Home
+  <%= @guild.name if @guild %> Home
 <% end %>
 
 <%= render "chatroom/chatroom" %>

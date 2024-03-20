@@ -1,18 +1,22 @@
 
 <div class="pusher">
   <div class="ui vertical masthead center aligned segment">
-
-
-    <div class="ui text container">
-      <h1 class="ui header">
-        The Guild Hall
-      </h1>
+    <div class="container">
+      <h1>The Guild Hall</h1>
       <h2>Come for the friends, stay for the friends</h2>
       
-      <%= link_to new_user_registration_path, class: "big ui yellow icon button" do %>
+      <%= link_to new_user_registration_path, class: "btn btn-primary" do %>
           Get Started <i class="right arrow icon"></i>
       <% end %>
     </div>
-
   </div>
 </div>
+
+
+
+<% if user_signed_in? && !@guild %>
+  <h1>Welcome</h1>
+  <h5>You haven't joined any guilds yet</h5>
+  <p>You may <%= link_to "create your own guild", new_guild_path %> and invite your friends, 
+    or <%= link_to "request to join", new_join_request_path %> one!</p>
+<% end %>

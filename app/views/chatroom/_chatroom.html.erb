@@ -6,29 +6,33 @@
     <%= turbo_stream_from "messages" %>
 
     <div id="message-container" data-chat-target="messageContainer">
-      <%= turbo_frame_tag "messages" do %>
-        <%= render @messages %>
+      <% if @messages %>
+        <%= turbo_frame_tag "messages" do %>
+          <%= render @messages %>
+        <% end %>
       <% end %>
     </div>
   </div>
 
   <div class="card-footer">
-    <%= form_for(Message.new, 
-      html: {class: "row g-3", role: "form"}, 
-      url: guild_message_path(@guild, @message)) do |f| %>
+    <% if @guild %>
+      <%= form_for(Message.new, 
+        html: {class: "row g-3", role: "form"}, 
+        url: guild_message_path(@guild, @message)) do |f| %>
 
-      <div class="col">
-          <%= f.text_field :body, 
-              data: { chat_target: "messageBody" },
-              class: "form-control", autocomplete: "off", autofocus: true %>
-      </div>
-      <div class="col-auto">
-          <%= f.button nil, 
-              data: { action: "chat#reset" }, 
-              class: "btn m-0 p-0" do %>
-              <i class="bi bi-arrow-right-circle-fill" style="font-size:1.6em;"></i> 
-          <% end %>
-      </div>
+        <div class="col">
+            <%= f.text_field :body, 
+                data: { chat_target: "messageBody" },
+                class: "form-control", autocomplete: "off", autofocus: true %>
+        </div>
+        <div class="col-auto">
+            <%= f.button nil, 
+                data: { action: "chat#reset" }, 
+                class: "btn m-0 p-0" do %>
+                <i class="bi bi-arrow-right-circle-fill" style="font-size:1.6em;"></i> 
+            <% end %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>

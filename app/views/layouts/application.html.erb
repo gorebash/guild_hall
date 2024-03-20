@@ -21,19 +21,16 @@
 
       <% if !user_signed_in? %>
         <%= yield %>
-      <% else %>
-
-        <% if @guild.id %>
-          <div class="hero hero-default">
-            <% if @guild.banner_image.attached? %>
-              <%= image_tag(@guild.banner_image) %>
-            <% end %>
-            <div class="title">
-              <h1><%= link_to @guild.name, guild_path(@guild), class: "navbar-brand mb-0 h1" %></h1>
-              <h4><%= @guild.description %></h4>
-            </div>
+      <% elsif @guild && @guild.id %>
+        <div class="hero hero-default">
+          <% if @guild.banner_image.attached? %>
+            <%= image_tag(@guild.banner_image) %>
+          <% end %>
+          <div class="title">
+            <h1><%= link_to @guild.name, guild_path(@guild), class: "navbar-brand mb-0 h1" %></h1>
+            <h4><%= @guild.description %></h4>
           </div>
-        <% end %>          
+        </div>
 
         <div class="mt-5">
           <div class="row mb-4">
@@ -43,12 +40,26 @@
             <div class="col">
               <%= yield %>
             </div>
-            
             <div class="col-md-4">
               <%= render "guilds/guild_nav", guild:@guild %>
             </div>
           </div>
         </div>
+
+      <% else %>
+        
+
+        <div class="mt-5">
+          <div class="row mb-4">
+            <h1 class="title"><%= yield :title %></h1>
+          </div>
+          <div class="row g-4">
+            <div class="col">
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+
       <% end %>
 
     </div>

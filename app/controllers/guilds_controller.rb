@@ -14,16 +14,16 @@ class GuildsController < ApplicationController
 
       # todo: overrides appcontroller, need to consolidate
       @events = @guild.guild_events.where('starts >= ?', DateTime.now).take(5)
-    end
 
-    @message = Message.new
-    @messages = @guild.messages.custom_display
+      @message = Message.new
+      @messages = @guild.messages.custom_display
+    end
   end
 
   # GET /guilds/new
   def new
     @guild = Guild.new
-    session[:guild_id] = @guild.id
+    # session[:guild_id] = @guild.id
   end
 
   # GET /guilds/1/edit
@@ -71,6 +71,7 @@ class GuildsController < ApplicationController
     GuildMember.where(guild:@guild).destroy_all
     Message.where(guild:@guild).destroy_all
     JoinRequest.where(guild:@guild).destroy_all
+    GuildEvent.where(guild:@guild).destroy_all
     @guild.destroy
 
     respond_to do |format|
