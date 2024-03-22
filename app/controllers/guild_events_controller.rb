@@ -72,7 +72,7 @@ class GuildEventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def guild_event_params
-      params.require(:guild_event).permit(:name, :description, :user_id, :starts, :ends, :location, :status)
+      params.require(:guild_event).permit(:name, :description, :starts, :ends, :location)
     end
 
     def guild_status_params

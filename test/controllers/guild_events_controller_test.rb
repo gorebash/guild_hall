@@ -2,7 +2,8 @@ require "test_helper"
 
 class GuildEventsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @guild_event = guild_events(:one)
+    sign_in(users(:batman))
+    @guild_event = guild_events(:event1)
   end
 
   test "should get index" do
@@ -16,8 +17,17 @@ class GuildEventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create guild_event" do
+    @guild = guilds(:justice)
+
     assert_difference("GuildEvent.count") do
-      post guild_events_url, params: { guild_event: { description: @guild_event.description, ends: @guild_event.ends, location: @guild_event.location, name: @guild_event.name, starts: @guild_event.starts, status: @guild_event.status, user_id: @guild_event.user_id } }
+      post guild_events_url, params: { 
+        guild_event: { 
+          name: @guild_event.name, 
+          description: @guild_event.description, 
+          location: @guild_event.location, 
+          starts: 10.days.from_now, 
+        }
+      }
     end
 
     assert_redirected_to guild_event_url(GuildEvent.last)
@@ -39,10 +49,11 @@ class GuildEventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy guild_event" do
-    assert_difference("GuildEvent.count", -1) do
-      delete guild_event_url(@guild_event)
-    end
+    delete guild_event_url(@guild_event)
+    # assert_difference("GuildEvent.count", -1) do
+    # end
 
+    assert_equal @guild_event.status, 'cancelled'
     assert_redirected_to guild_events_url
   end
 end

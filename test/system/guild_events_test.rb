@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class GuildEventsTest < ApplicationSystemTestCase
   setup do
-    @guild_event = guild_events(:one)
+    @guild_event = guild_events(:event1)
   end
 
   test "visiting the index" do

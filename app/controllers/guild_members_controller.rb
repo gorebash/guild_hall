@@ -6,6 +6,11 @@ class GuildMembersController < ApplicationController
   end
 
   def update
+
+    if !can_edit_guild?
+      return head :forbidden
+    end
+
     @member = GuildMember.find(params[:id])
     respond_to do |format|
       if @member.update(guild_member_params)

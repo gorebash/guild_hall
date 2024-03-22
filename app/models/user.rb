@@ -23,11 +23,11 @@ class User < ApplicationRecord
 
   validates :first_name,
             presence: true,
-            length: { minimum: 3, maximum: 25 }
+            length: { minimum: 2, maximum: 25 }
   
   validates :last_name,
             presence: true,
-            length: { minimum: 3, maximum: 25 }
+            length: { minimum: 2, maximum: 35 }
 
   has_one_attached :avatar
   validate :image_format

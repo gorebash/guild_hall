@@ -4,13 +4,16 @@ avengers:
   name: Avengers
   description: MyString
   invite_code: CODE02
+  slug: avengers
 
 justice:
   name: Justice League
   description: MyString
   invite_code: CODE01
+  slug: justice-league
 
 league_of_legends:
   name: League of Legends
   description: MyString
   invite_code: CODE03
+  slug: league-of-legends

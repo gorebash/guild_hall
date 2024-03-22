@@ -7,6 +7,8 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "signed in user with no guild should render" do
-    assert false
+    sign_in(users(:user_with_no_guild))
+    get home_url
+    assert_response :success
   end
 end
