@@ -1,8 +1,5 @@
 
-<% if @events && @events.any? %>
-    <%= render "guild_events/guild_event_summary", events:@events %>
-<% end %>
-
+<%= render "guild_events/guild_event_summary", events:@events %>
 <%= render "guild_members/members_summary", members:@guild.users %>
 
 <% if guild.id? && can_edit_guild? %>

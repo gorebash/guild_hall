@@ -19,10 +19,14 @@
                 <% current_user.guilds.each do |guild| %>
                   <li><%= link_to guild.name, guild_path(guild), class: "dropdown-item" %></li>
                 <% end %>
-                <li><hr class="dropdown-divider"></li>
+                <% if current_user.guilds.any? %>
+                  <li><hr class="dropdown-divider"></li>
+                <% end %>
                 <li><%= link_to "Join a Guild", new_join_request_path, class: "dropdown-item" %></li>
                 <li><%= link_to "Create a Guild", new_guild_path, class: "dropdown-item" %></li>
-                <li><%= link_to "Leave guild", guilds_path, class: "dropdown-item" %></li>
+                <% if current_user.guilds.any? %>
+                  <li><%= link_to "Leave guild", guilds_path, class: "dropdown-item" %></li>
+                <% end %>
               </ul>
             </li>
             <li class="nav-item dropdown nav-item">

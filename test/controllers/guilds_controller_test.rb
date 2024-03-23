@@ -37,11 +37,26 @@ class GuildsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show guild" do
-    guild = guilds(:avengers)    
-    get guild_url(guild)
+    get guild_url(@guild)
 
     assert_response :success
-    assert_equal guild.id, session[:guild_id]
+    assert_equal @guild.id, session[:guild_id]
+  end
+
+  test "should redirect to home for user with no guilds" do
+    @user = users(:user_with_no_guild)
+    sign_in (@user)
+
+    get root_url
+    assert_redirected_to home_url
+  end
+
+  test "should not show guild for non-members" do
+    @user = users(:ironman)
+    sign_in (@user)
+    
+    get guild_url(@guild)
+    assert_redirected_to home_url # should redirect to their default guild?
   end
 
   test "should get edit" do

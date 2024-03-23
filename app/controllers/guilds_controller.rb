@@ -9,7 +9,16 @@ class GuildsController < ApplicationController
   # GET /guilds/1 or /guilds/1.json
   def show
     @guild ||= Guild.friendly.find(params[:id]) if params[:id]
+
     if (@guild)
+    
+      if (!current_user.guilds.include? @guild)
+        respond_to do |format|
+          format.html { redirect_to home_url }
+        end
+        return
+      end
+    
       session[:guild_id] = @guild.id
 
       # todo: overrides appcontroller, need to consolidate
@@ -17,13 +26,14 @@ class GuildsController < ApplicationController
 
       @message = Message.new
       @messages = @guild.messages.custom_display
+    else
+      redirect_to home_url
     end
   end
 
   # GET /guilds/new
   def new
     @guild = Guild.new
-    # session[:guild_id] = @guild.id
   end
 
   # GET /guilds/1/edit

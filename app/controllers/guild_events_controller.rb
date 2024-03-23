@@ -41,7 +41,7 @@ class GuildEventsController < ApplicationController
   # PATCH/PUT /guild_events/1 or /guild_events/1.json
   def update
     respond_to do |format|
-      if @guild_event.update(guild_event_params)
+      if @guild_event.user == current_user && @guild_event.update(guild_event_params)
         flash[:success] = "Event was successfully updated."
         format.html { redirect_to guild_event_url(@guild_event) }
         format.json { render :show, status: :ok, location: @guild_event }
