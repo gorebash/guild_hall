@@ -32,6 +32,10 @@ class User < ApplicationRecord
   has_one_attached :avatar
   validate :image_format
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   private
   
   def image_format
