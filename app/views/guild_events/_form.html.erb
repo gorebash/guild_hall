@@ -38,7 +38,10 @@
     <%= form.text_area :location, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.submit "Create", class: "btn btn-primary" %>
+  <div class="d-flex">
+    <div class="flex-grow-1">
+      <%= link_to "Back to events", guild_events_path %>
+    </div>
+    <%= form.submit "Save", class: "btn btn-primary" %>
   </div>
 <% end %>

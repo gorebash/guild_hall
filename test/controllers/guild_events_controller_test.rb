@@ -11,6 +11,13 @@ class GuildEventsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should show upcoming events on index" do
+    get guild_events_url
+
+    #todo: verify the list of events in the view is correct
+    assert :false
+  end
+
   test "should get new" do
     get new_guild_event_url
     assert_response :success

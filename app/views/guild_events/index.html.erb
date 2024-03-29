@@ -1,6 +1,6 @@
 <% content_for :title do %>
   <div class="d-flex align-items-center">
-    <h1 class="flex-grow-1">Upcoming Merry Feasts</h1>
+    <h1 class="flex-grow-1">Upcoming Events</h1>
     <%= link_to "Create New Event", new_guild_event_path, class: "btn btn-primary text-end" %>
   </div>
 <% end %>
@@ -10,5 +10,10 @@
     <% @guild_events.each do |guild_event| %>
       <%= render guild_event %>
     <% end %>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <%= link_to "Create New Event", new_guild_event_path, class: "btn btn-primary text-end" %>
+    </div>
   </div>
 </div>

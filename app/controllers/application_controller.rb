@@ -25,10 +25,8 @@ class ApplicationController < ActionController::Base
       if !@guild
         memberships = GuildMember.where(user_id: current_user.id)
 
-        # if the user is not yet a part of a guild redirect to start page
+        # if the user is not yet a part of a guild, return
         if !memberships.any?
-          #redirect_to home_path
-          # @guild = Guild.new
           return
         end
 
@@ -36,11 +34,12 @@ class ApplicationController < ActionController::Base
         @guild = memberships.first.guild
 
 
-        # todo: store in session
-        @guilds = current_user.guilds
-        @events = @guild.guild_events.where('starts >= ?', DateTime.now).take(5)
+        
       end
       
+      # todo: store in session
+      @guilds = current_user.guilds
+      @events = @guild.guild_events.where('starts >= ?', DateTime.now).take(5)
       
     end
   end
