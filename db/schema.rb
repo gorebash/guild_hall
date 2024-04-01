@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_19_034028) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_01_142453) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -47,6 +47,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_19_034028) do
     t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "attendees", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "guild_event_id", null: false
+    t.integer "status", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["guild_event_id"], name: "index_attendees_on_guild_event_id"
+    t.index ["user_id"], name: "index_attendees_on_user_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -136,6 +146,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_19_034028) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "attendees", "guild_events"
+  add_foreign_key "attendees", "users"
   add_foreign_key "guild_events", "guilds"
   add_foreign_key "guild_events", "users"
   add_foreign_key "guild_members", "guilds"

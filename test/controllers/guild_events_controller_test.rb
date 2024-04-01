@@ -15,7 +15,7 @@ class GuildEventsControllerTest < ActionDispatch::IntegrationTest
     get guild_events_url
 
     #todo: verify the list of events in the view is correct
-    assert :false
+    assert.fail
   end
 
   test "should get new" do
