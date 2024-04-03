@@ -6,9 +6,12 @@ class AttendeesControllerTest < ActionDispatch::IntegrationTest
     guild_event = guild_events(:event1)
 
     assert_difference "Attendee.count" do
-      post attend_event_path(guild_event), params: { status: "attending" }
+      post attend_event_path(guild_event), params: { 
+        attendee: { guild_event_id:guild_event.id, status: "accepted" }
+      }
     end
 
-    assert_equal "You are now attending the event.", flash[:success]
+    assert_equal "Your status for the event is saved!", flash[:success]
+    assert_redirected_to guild_event_url(guild_event)
   end
 end

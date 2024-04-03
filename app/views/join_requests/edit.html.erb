@@ -2,7 +2,7 @@
 
 <div class="card border shadow bg-body rounded mt-5" style="max-width:40rem;">
   <div class="card-header">
-    <h5>[Name] would like to join <%= @guild.name %></h5>
+    <h5><%= @join_user.full_name %> would like to join <%= @guild.name %></h5>
   </div>
 
   <div class="card-body">
@@ -10,7 +10,7 @@
     <div class="mb-3 row">
       <label class="col-sm-3 col-form-label text-end"><strong>Name</strong></label>
       <div class="col-sm-9">
-        <input type="text" readonly class="form-control-plaintext" value="[First Last Name]">
+        <input type="text" readonly class="form-control-plaintext" value="<%= @join_user.full_name %>">
       </div>
     </div>
     

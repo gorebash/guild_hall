@@ -1,0 +1,5 @@
+
+<%= form_with url:attend_event_path, method: :post do |form| %>
+    <%= form.hidden_field :status, value: "accepted" %>
+    <%= form.submit "I'm in!", class: "btn btn-light" %>
+<% end %>

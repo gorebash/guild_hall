@@ -1,6 +1,7 @@
 class GuildEvent < ApplicationRecord
   belongs_to :user
   belongs_to :guild
+  has_many :attendees
   enum :status, [:upcoming, :cancelled, :past], default: :upcoming
   enum :theme, [:primary, :info, :success, :warning, :danger], default: :primary # :secondary
   has_rich_text :description

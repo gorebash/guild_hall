@@ -39,7 +39,9 @@
         </div>
         <div class="card-footer">
             <div class="widget-49-meeting-action">
-                <%= link_to "RSVP", guild_event, class: "btn btn-light" %>
+                
+                <%= render "attendees/new", attendee: Attendee.new %>
+
                 <% if guild_event.user == current_user %>
                     <span class="mx-2">|</span>
                     <%= link_to "Edit", edit_guild_event_path(guild_event), class: "btn btn-light" %>
