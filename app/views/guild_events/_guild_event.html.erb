@@ -21,33 +21,11 @@
                         </span>
                     </div>
                 </div>
-                
-                <div class="widget-49-meeting-points">
-                    <p class="description pt-4"><%= guild_event.description %></p>
-
-                    <strong>Where to be:</strong>
-                    <p><%= guild_event.location %></p>
-
-                    <strong>Organizer:</strong>
-                    <p><%= guild_event.user.username %></p>
-
-                    <strong>Guild:</strong>
-                    <p><%= guild_event.guild.name %></p>
-                </div>
-
             </div>
         </div>
         <div class="card-footer">
             <div class="widget-49-meeting-action">
-                
-                <%= render "attendees/new", attendee: Attendee.new %>
-
-                <% if guild_event.user == current_user %>
-                    <span class="mx-2">|</span>
-                    <%= link_to "Edit", edit_guild_event_path(guild_event), class: "btn btn-light" %>
-                    <%= link_to "Cancel Event", guild_event, class: "btn btn-danger", 
-                        data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?" } %>
-                <% end %>
+                <%= link_to "Details", guild_event_path(guild_event), class: "btn btn-light" %>
             </div>
         </div>
     </div>

@@ -10,6 +10,18 @@ class GuildEvent < ApplicationRecord
   validates_date :starts, on_or_after: lambda { Date.current }
   validates_date :ends, on_or_after: lambda { :starts }
 
+  def accepted
+    self.attendees.where(status: :accepted)
+  end
+
+  def tentative
+    self.attendees.where(status: :maybe)
+  end
+
+  def declined
+    self.attendees.where(status: :declined)
+  end
+
   before_create do
     self.theme = rand(5)
   end
