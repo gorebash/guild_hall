@@ -11,15 +11,25 @@ class GuildEvent < ApplicationRecord
   validates_date :ends, on_or_after: lambda { :starts }
 
   def accepted
-    self.attendees.where(status: :accepted)
+    
+    # STOP. This needs to be a single entry per user.
+
+    attnd = attendees_distinct_sorted
+
+    attnd.where(status: :accepted)
+    
   end
 
   def tentative
-    self.attendees.where(status: :maybe)
+    attendees_distinct_sorted.where(status: :maybe)
   end
 
   def declined
-    self.attendees.where(status: :declined)
+    attendees_distinct_sorted.where(status: :declined)
+  end
+
+  def attendees_distinct_sorted
+    self.attendees.order(:created_at).select(:user_id).distinct
   end
 
   before_create do

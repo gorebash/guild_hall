@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   
+  resources :users, :only => [:show]
   resources :guild_members, except: [:show]
   resources :join_requests, except: [:show]
   resources :guild_events

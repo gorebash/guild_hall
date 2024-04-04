@@ -1,6 +1,7 @@
 
 <% content_for :title do %>
   <h2>Edit <%= resource_name.to_s.humanize %></h2>
+  <p class="m-0 mb-3"><%= link_to "View my profile", user_path(current_user) %></p>
 <% end %>
 
 

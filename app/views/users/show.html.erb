@@ -1,0 +1,75 @@
+
+<% content_for :title do %>
+  <h2><%= @user.username %></h2>
+<% end %>
+
+
+<div class="mb-5">
+  <h5>Info</h5>
+  <hr/>
+  <div class="mb-3">
+    <span class="fw-bold">Name:</span>
+    <%= @user.full_name %>
+  </div>
+  <div class="mb-3">
+    <span class="fw-bold">Birth Day:</span>
+    <%= @user.birth_date.strftime('%d %b') %>
+  </div>
+  <div class="mb-3">
+    <span class="fw-bold">Email:</span>
+    <%= mail_to @user.email %>
+  </div>
+</div>
+
+<div class="mb-5">
+  <h5>Profile Image</h5>
+  <hr/>
+  <% if current_user.avatar.attached? %>
+    <%= image_tag(current_user.avatar, class:"object-fit-fill border rounded profile-lg") %>
+  <% else %>
+    <p>No profile image attached.</p>
+  <% end %>
+</div>
+
+<div class="mb-3">
+  <h5>Guilds</h5>
+  <hr/>
+  <ul class="list-group">
+    <% @user.guilds.each do |guild| %>
+      <li class="list-group-item"><%= guild.name %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="mb-3">
+  <h5>Hosting Events</h5>
+  <hr/>
+  <% if @user.guild_events.any? %>
+    <ul class="list-group">
+      <% @user.guild_events.each do |event| %>
+        <li class="list-group-item">
+          <%= link_to event.name, guild_event_path(event) %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="pb-3 fst-italic">No events hosted.</p>
+  <% end %>
+</div>
+
+<div class="mb-3">
+  <h5>Attending</h5>
+  <hr/>
+  <% if @user.attendees.any? %>
+    <ul class="list-group">
+      <% @user.attendees.each do |attend| %>
+        <li class="list-group-item">
+          <%= link_to attend.guild_event.name, guild_event_path(attend.guild_event) %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="pb-3 fst-italic">No events attended.</p>
+  <% end %>
+
+</div>
