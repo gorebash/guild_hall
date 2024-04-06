@@ -1,0 +1,13 @@
+
+<%= form_with(model: [guild_event, attendee]) do |form| %>
+  <div class="d-flex flex-row mb-2">
+    <div class="">
+      <%= form.select(:status, 
+        [["I'm in!", "accepted"], ["Maybe", "maybe"], ["Will miss it", "declined"]], 
+        {}, { :class => "form-select form-select-md me-2" }) %>
+    </div>
+    <div class="">
+      <%= form.submit "Save", class: "btn btn-light ms-2" %>
+    </div>
+  </div>
+<% end %>

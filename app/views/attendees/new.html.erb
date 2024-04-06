@@ -1,0 +1,5 @@
+<p class="description pt-1">You're haven't responded yet. Tell us if you can make it!</p>
+
+<%= turbo_frame_tag 'attendance' do %>
+  <%= render 'form', guild_event:@guild_event, attendee:@attendee %>
+<% end %>

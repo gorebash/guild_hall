@@ -9,6 +9,7 @@ class GuildEventsController < ApplicationController
 
   # GET /guild_events/1 or /guild_events/1.json
   def show
+    @attendee = @guild_event.attendees.find_by(user_id: current_user.id)
   end
 
   # GET /guild_events/new

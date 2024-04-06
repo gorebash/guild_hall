@@ -1,0 +1,6 @@
+<h1>Edit Attendance</h1>
+
+<%= turbo_frame_tag 'attendance' do %>
+  <%= render 'form', guild_event:@guild_event, attendee:@attendee %>
+  <%= link_to "cancel", guild_event_attendee_path %>
+<% end %>

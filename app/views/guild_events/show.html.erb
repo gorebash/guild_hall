@@ -43,8 +43,14 @@
                   <%= link_to "Cancel Event", @guild_event, class: "btn btn-danger", 
                       data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?" } %>
               <% else %>
-                <p class="description pt-1">Tell us if you can make it</p>
-                <%= render "attendees/new", attendee: Attendee.new %>
+                <%= turbo_frame_tag "attendance" do %>
+                  <% if @attendee %>
+                    <%= render "attendees/attendance", attendee: @attendee %>
+                    <%= link_to "Change my response", edit_guild_event_attendee_path(@attendee) %>
+                  <% else %>
+                    <%= link_to "Respond", new_guild_event_attendee_path(guild_event_id: @guild_event.id) %>
+                  <% end %>
+                <% end %>
               <% end %>
             </div>
         </div>
