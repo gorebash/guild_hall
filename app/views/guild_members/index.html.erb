@@ -1,27 +1,30 @@
 <% content_for :title do %>
-  Guild Members
+  <h2 class="mt-3">Guild Members</h2>
 <% end %>
 
 <% @users.each do |user| %>
-  <div class="card border shadow bg-body rounded mb-3">
+  <div class="card border shadow bg-body rounded mb-5">
+    <div class="m-3">
+      <p class="badge text-bg-success float-sm-end">Guild <%= membership_for(user, @guild).role.titleize %></p>
+    </div>
     <div class="card-body">
+      
         
-      <div class="d-flex">
-        <h2 class="card-title flex-grow-1">
-          <% if current_user.avatar.attached? %>
-            <%= image_tag(current_user.avatar, class: "profile-icon") %>
-          <% end %>
-          <div class=""><%= user.username %></div>
-        </h2>
-        <p class="badge text-bg-success mx-3 align-self-center"><%= membership_for(user, @guild).role.titleize %></p>
-      </div>
-
-      <div class="mt-3">
-        <p class=""><%= user.first_name.titleize %> <%= user.last_name.titleize %></p>
-        <p><%= user.email %></p>
-        <p><%= user.birth_date %></p>
-        <p><i>Joined <%= time_ago_in_words(user.created_at) %> ago</i></p>
-      </div>
+      <h2 class="card-title flex-grow-1 text-center">
+        <% if current_user.avatar.attached? %>
+          <%= image_tag(current_user.avatar, class: "profile-icon profile-icon-lg") %>
+          <br/>
+        <% end %>
+        
+        <span class="m-0 fw-bold"><%= link_to user.username, user_path(user) %></span>
+        <br/>
+        <span class="m-0 text-sm"><%= user.full_name %></span>
+      </h2>
+      
+      <p class="card-text text-center">
+        <span class="badge bg-primary"><%= user.guilds.count %> Guilds</span>
+        <span class="badge bg-primary"><%= user.guild_events.count %> Events</span>
+      </p>
     </div>
     <% if can_edit_guild? %>
       <div class="card-footer">

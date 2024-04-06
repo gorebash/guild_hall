@@ -1,0 +1,31 @@
+<h2>Attendees for <%= @guild_event.name %></h2>
+
+<%= turbo_frame_tag 'attendee-list' do %>
+  <div class="card border shadow rounded mb-3">
+    <div class="card-body">
+      <div class="card-title">Attending (<%= @accepted.count %>)</div>
+      <div class="d-flex flex-wrap mb-3">
+        <% @accepted.each do |attendee| %>
+          <%= render "attendees/attendee", attendee: attendee %>
+        <% end %>
+    </div>
+
+    <hr/>
+    <div class="card-title">Tentative (<%= @tentative.count %>)</div>
+    <div class="d-flex flex-wrap mb-3">
+        <% @tentative.each do |attendee| %>
+          <%= render "attendees/attendee", attendee: attendee %>
+        <% end %>
+    </div>
+    
+    <hr/>
+    <div class="card-title">Can't make it (<%= @declined.count %>)</div>
+    <div class="d-flex flex-wrap mb-3">
+        <% @declined.each do |attendee| %>
+          <%= render "attendees/attendee", attendee: attendee %>
+        <% end %>
+    </div>
+
+    </div>
+  </div>
+<% end %>

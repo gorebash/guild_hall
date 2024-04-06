@@ -16,6 +16,12 @@ class ApplicationController < ActionController::Base
       ["owner", "admin"].include?(guild_role)
   end
 
+  def current_user_in_guild?
+    return false if !user_signed_in?
+    return false if !@guild.guild_members.find_by(user: current_user)
+    return true
+  end
+
   protected
 
   def set_current_guild

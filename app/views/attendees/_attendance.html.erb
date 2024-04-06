@@ -1,2 +1,12 @@
 
-<p>You responded to this event: <%= attendee.status %></p>
+<div class="alert alert-info">
+  <div class="d-flex flex-row">
+    <div class="flex-grow-1">
+      <i>Your response: </i>
+      <span class="fw-bold"><%= attendee.status.titleize %></span>
+    </div>
+    <div>
+      <%= link_to "Change my response", edit_guild_event_attendee_path(guild_event, attendee) %>
+    </div>
+  </div>
+</div>

@@ -34,7 +34,7 @@ class User < ApplicationRecord
   validate :image_format
 
   def full_name
-    "#{first_name} #{last_name}"
+    "#{first_name.titleize} #{last_name.titleize}"
   end
 
   private

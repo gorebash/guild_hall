@@ -3,6 +3,8 @@
     <%= image_tag(current_user.avatar, class: "profile-icon") %>
     <br/>
   <% end %>
-  <p class="m-0 fw-bold"><%= link_to attendee.user.username, user_path(attendee.user) %></p>
+  <p class="m-0 fw-bold">
+    <%= link_to attendee.user.username, user_path(attendee.user), 
+      data: { turbo_frame: "_top" } %></p>
   <p class="m-0">(<%= attendee.user.first_name %>)</p>
 </div>

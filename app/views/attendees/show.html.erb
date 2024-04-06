@@ -1,5 +1,4 @@
 <h1>Attendee show</h1>
 <%= turbo_frame_tag 'attendance' do %>
-  <%= render "attendance", attendee: @attendee %>
-  <p><%= link_to "change my response", edit_guild_event_attendee_path(@attendee) %>
+  <%= render "attendance", guild_event: @guild_event, attendee: @attendee %>
 <% end %>

@@ -1,5 +1,5 @@
 <% content_for :title do %>
-  <div class="d-flex align-items-center">
+  <div class="d-flex align-items-center mt-3">
     <h1 class="flex-grow-1">Upcoming Events</h1>
     <%= link_to "Create New Event", new_guild_event_path, class: "btn btn-primary text-end" %>
   </div>
@@ -9,6 +9,22 @@
   <div class="row">
     <% @guild_events.each do |guild_event| %>
       <%= render guild_event %>
+    <% end %>
+
+    <% if !@guild_events.any? %>
+      <div class="col-lg-12">
+        <p class="mt-5"><span class="fw-bold">Good news!</span> The schedule is free.</p>
+        <i>Need some event ideas?</i>
+        <ul class="mb-5">
+          <li>Host a Merry Feast for the whole Guild</li>
+          <li>Throw a costume party</li>
+          <li>Arrange a treasure hunt</li>
+          <li>Throw a birthday party</li>
+          <li>Hold a Jousting tournament</li>
+          <li>Host a cooking competition</li>
+          <li>Organize a cleaning party... (it's fun when its done!)</li>
+        </ul>
+      </div>
     <% end %>
   </div>
   <div class="row">
