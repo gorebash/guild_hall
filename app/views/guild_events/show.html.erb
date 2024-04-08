@@ -36,8 +36,7 @@
         <div class="card-footer">
             <div class="widget-49-meeting-action">
               <% if @guild_event.user == current_user %>
-                  <span class="mx-2">|</span>
-                  <%= link_to "Edit", edit_guild_event_path(@guild_event), class: "btn btn-light" %>
+                  <%= link_to "Edit", edit_guild_event_path(@guild_event), class: "btn btn-light me-2" %>
                   <%= link_to "Cancel Event", @guild_event, class: "btn btn-danger", 
                       data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?" } %>
               <% else %>

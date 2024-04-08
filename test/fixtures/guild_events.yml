@@ -6,7 +6,7 @@ event1:
   name: MyString
   description: MyText
   starts: 2024-02-27 19:34:17
-  ends: 2024-02-27 19:34:17
+  ends: 2024-02-28 19:34:17
   location: MyString
   theme: 1
   status: 1
@@ -17,7 +17,6 @@ event2:
   name: MyString
   description: MyText
   starts: 2024-02-27 19:34:17
-  ends: 2024-02-27 19:34:17
   location: MyString
   theme: 2
   status: 1
