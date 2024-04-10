@@ -44,7 +44,7 @@ class GuildsController < ApplicationController
     @guild = Guild.new(guild_params)
     saved = @guild.save
 
-    @guild_user = GuildMember.create(guild_id: @guild.id, user_id: current_user.id)
+    @guild_user = GuildMember.create(guild_id: @guild.id, user_id: current_user.id, role: :owner)
     saved = @guild_user.save
 
     respond_to do |format|

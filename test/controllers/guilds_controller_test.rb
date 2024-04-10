@@ -34,6 +34,7 @@ class GuildsControllerTest < ActionDispatch::IntegrationTest
 
     assert_equal Guild.last, GuildMember.last.guild
     assert_equal @user, GuildMember.last.user
+    assert_equal "owner", GuildMember.last.role
   end
 
   test "should show guild" do
