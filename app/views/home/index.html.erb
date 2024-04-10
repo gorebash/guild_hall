@@ -1,37 +1,84 @@
 
 
 
-<% if !user_signed_in? %> 
-  <div class="container">
-    <h1>The Guild Hall</h1>
+
+  <div class="container mt-3 mb-3">
+
+
+    <h1>Welcome to the Guild Hall</h1>
     <h2>Come for the friends, stay for the friends</h2>
-    <%= link_to new_user_registration_path, class: "btn btn-primary" do %>
-        Get Started <i class="bi bi-arrow-right"></i>
-    <% end %>
-  </div>
+
+    <div class="row g-5 mt-3">
+      <div class="col-8">
+        <% if user_signed_in? && !@guild %>
+
+          <div class="alert alert-primary mt-5">
+            <h5>You haven't joined any guilds yet</h5>
+            <p>You may <%= link_to "create your own guild", new_guild_path %> and invite your friends, 
+              or <%= link_to "request to join", new_join_request_path %> one!</p>
+          </div>
+
+
+        <% elsif user_signed_in? %>
+          <div class="card border mb-3 mt-3">
+            <div class="card-body">
+              <h5 class="card-title">You are a member of the <%= @guild.name %> guild</h5>
+              <p>Here are some of your guildmates:</p>
+              <ul>
+                <% @guild.users.each do |user| %>
+                  <li><%= user.full_name %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        <% end %>
 
 
 
+    
+        <div class="card border mb-3">
+          <div class="card-body">
+            <h3 class="card-title">What is Guild Hall?</h3>
+            <img src="" class="card-img-top" alt="image">
+            <hr/>
+              <h5>Guild Hall is a place to build your local community online.</h5>
+            <p class="card-text mt-3">
+              It is <strong>safe for kids</strong>, and parents have <strong>full visibility</strong> of their children's activities. 
+              There's no private messaging, only the ability to post to your guild. 
+              Even better, there are <strong>no likes and followers</strong> here! Just friends and fun!</p>
 
-<% elsif !@guild %>
-  <h1>Welcome to the Guild Hall</h1>
+            <p class="card-text">
+              To get started you can either <%= link_to "create your own guild", new_guild_path %> and invite friends to join,
+              or <%= link_to "join an existing guild", new_join_request_path %> if you have an invite code.</p>
 
-  <div class="alert alert-primary mt-5">
-    <h5>You haven't joined any guilds yet</h5>
-    <p>You may <%= link_to "create your own guild", new_guild_path %> and invite your friends, 
-      or <%= link_to "request to join", new_join_request_path %> one!</p>
-  </div>
+            
 
+            <p class="card-text">
+              If you have questions or would like to get involved, <%= mail_to "brent.gore@gmail.com", "drop me a message" %>. 
+              Join today and start building your community!
+            </p>
+          </div>
+        </div>
+      </div>
 
-<% else %>
-  <h1>Welcome to the Guild Hall</h1>
-  <div class="mt-5">
-    <h5>You are a member of the <%= @guild.name %> guild</h5>
-    <p>Here are some of your guildmates:</p>
-    <ul>
-      <% @guild.users.each do |user| %>
-        <li><%= user.full_name %></li>
+      <% if !user_signed_in? %> 
+        <div class="col-sm-4">
+          <div class="card border">
+            <div class="card-body">
+              <h5 class="card-title">Get Started</h5>
+              <p class="card-text">Create your account to get started</p>
+              <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-primary" %>
+            </div>
+          </div>
+        </div>
       <% end %>
-    </ul>
-  </div>
-<% end %>
+    </div>
+
+
+    <% if !user_signed_in? %> 
+      <%= link_to new_user_registration_path, class: "btn btn-primary mt-5" do %>
+          Get Started <i class="bi bi-arrow-right"></i>
+      <% end %>
+    <% end %>
+
+</div>
