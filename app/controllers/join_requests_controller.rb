@@ -1,6 +1,6 @@
 class JoinRequestsController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_permission, only: %i[ update, index ]
+  before_action :require_permission, only: %i[ update ]
   before_action :set_join_request, only: %i[ show edit update destroy ]
 
   # GET /join_requests or /join_requests.json
@@ -11,6 +11,14 @@ class JoinRequestsController < ApplicationController
   # GET /join_requests/new
   def new
     @join_request = JoinRequest.new
+
+    
+    # ** Make the invite code show up in the input ** #
+
+
+    if params[:invite_code]
+      @join_request.invite_code = params[:invite_code]
+    end
   end
 
   # GET /guilds/1/join_requests/1/edit

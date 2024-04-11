@@ -1,6 +1,34 @@
-<h3 class="mb-5">Membership Requests</h3>
 
 
+<h3>Invite new members</h3>
+<div class="mb-5">
+  <p>Share the invite link below with friends to invite them to join your guild.</p>
+  <div class="alert alert-info mb-3">
+    <div>Your Guild code is: <%= @guild.invite_code %></div>
+    <div>Share this link: 
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="join_request_invite_code">Invite link:</label>
+        <input class="form-control" placeholder="Guild Code" type="text" id="join_request_invite_code"
+          value="<%= new_join_request_url(@guild.invite_code) %>" />
+        <input type="submit" value="Copy" class="btn btn-secondary" data-disable-with="Copy" />
+      </div>
+    </div>
+  </div>
+
+  <div class="">
+    <h5>How does this work?</h5>
+    <p>When your friend visits this link, they will be able to request to join your guild.</p>
+    <p>Guild Administators can approve or deny their request, which will appear on this page.
+      (They will need to create a GuildHall account if they don't already have one.)</p>
+  </div>
+  
+</div>
+
+
+
+<% if can_edit_guild? %>
+<hr/>
+<h3 class="mt-5">Membership Requests</h3>
 <% @join_requests.each do |join_request| %>
   <div class="card border shadow bg-body rounded mb-5">
     <div class="card-body">
@@ -13,8 +41,10 @@
 <% end %>
 
 <% if !@join_requests.any? %>
-  <div class="alert alert-info mt-5" role="alert">
+  <div class="alert alert-info mt-3" role="alert">
     <h5>All set</h5>
     <p>You have no pending requests</p>
   </div>
+<% end %>
+
 <% end %>

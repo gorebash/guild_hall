@@ -1,5 +1,10 @@
 
-<h1>Join a Guild</h1>
+<h1>Join a new Guild</h1>
 <div class="mt-5">
+  <p>Join a new guild by entering the invite code below.
+    <br/>A Guild Administator will review your request and approve or deny it.
+  </p>
   <%= render "form", join_request: @join_request %>
+  <p class="fst-italic">If you don't have an invite code, you can't join a guild but you can 
+    <%= link_to "create one", new_guild_path %>.</p>
 </div>
