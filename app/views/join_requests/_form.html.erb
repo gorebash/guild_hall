@@ -12,9 +12,15 @@
   <% end %>
   
 
-  <div class="input-group mb-3">
-    <%= form.label :invite_code, "Invite code:", class: "input-group-text" %>
+  <div class="input-group">
+    <%= form.label :invite_code, "Guild code:", class: "input-group-text" %>
     <%= form.text_field :invite_code, class: "form-control", placeholder: "Guild Code" %>
-    <%= form.submit "Request to join", class: "btn btn-primary" %>
+    <%= form.submit "Request to join", class: "btn btn-primary p-3" %>
   </div>
+  <% if join_request.invite_code %>
+    <div class="p-2 bg-info bg-opacity-10 border border-success rounded mt-2">
+      <i class="bi bi-check-circle-fill"></i>&nbsp;<strong>Code received</strong>
+    </div>
+  <% end %> 
+  
 <% end %>

@@ -2,15 +2,31 @@
 
 <h3>Invite new members</h3>
 <div class="mb-5">
-  <p>Share the invite link below with friends to invite them to join your guild.</p>
   <div class="alert alert-info mb-3">
-    <div>Your Guild code is: <%= @guild.invite_code %></div>
-    <div>Share this link: 
-      <div class="input-group mb-3">
-        <label class="input-group-text" for="join_request_invite_code">Invite link:</label>
+    <div>
+      <p class="">Share the invite link below with friends to invite them to join your guild.</p>
+      <div class="input-group mb-3" data-controller="clipboard">
+        <label class="input-group-text" for="join_request_invite_code">Guild link:</label>
         <input class="form-control" placeholder="Guild Code" type="text" id="join_request_invite_code"
-          value="<%= new_join_request_url(@guild.invite_code) %>" />
-        <input type="submit" value="Copy" class="btn btn-secondary" data-disable-with="Copy" />
+          value="<%= join_url(@guild.invite_code) %>"
+          data-disable-with="Copy"
+          data-clipboard-target="source" readonly />
+        <button type="submit" value="Copy" class="btn btn-secondary" 
+          data-action="clipboard#copy">
+          <i class="bi bi-clipboard-plus"></i> Copy
+        </button>
+
+        <div class="toast-container position-fixed top-0 end-0 p-3">
+          <div id="toast-clipboard" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-success">
+              <strong class="me-auto"><i class="bi bi-clipboard-check-fill"></i> Copied!</strong>
+              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+              Invite link copied to your clipboard
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -21,7 +37,6 @@
     <p>Guild Administators can approve or deny their request, which will appear on this page.
       (They will need to create a GuildHall account if they don't already have one.)</p>
   </div>
-  
 </div>
 
 
