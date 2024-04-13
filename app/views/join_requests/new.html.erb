@@ -1,5 +1,9 @@
 
-<h1>Join a new Guild</h1>
+<% content_for :title do %>
+  <h1 class="mt-3">Join a new Guild</h1>
+<% end %>
+
+
 <div class="mt-5">
   <p>Join a new guild by entering the invite code:</p>
   <%= render "form", join_request: @join_request %>

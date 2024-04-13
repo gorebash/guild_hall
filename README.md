@@ -1,8 +1,14 @@
 # README
 
-## Create your own { Guild Hall }
+## Guild Hall
 
-Come for the friends, stay for the friends
+### Come for the friends, stay for the friends
+
+Guild Hall is a place to build your local community online.
+
+It is **safe for kids**, and parents have **full visibility** of their children's activities.
+There's no private messaging, only the ability to post to your guild.
+Even better, there are **no likes and followers** here! Just friends and fun!
 
 # Setup
 
@@ -17,4 +23,5 @@ Come for the friends, stay for the friends
 - `rails s`
 
 # linux local dev setup (optional)
+
 - sudo apt install libvips

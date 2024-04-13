@@ -1,17 +1,20 @@
 
 
-<h3>Invite new members</h3>
+<% content_for :title do %>
+  <h1 class="mt-3">Invite new members</h1>
+<% end %>
+
 <div class="mb-5">
   <div class="alert alert-info mb-3">
     <div>
-      <p class="">Share the invite link below with friends to invite them to join your guild.</p>
+      <p class="">Share this link with friends to join your guild!</p>
       <div class="input-group mb-3" data-controller="clipboard">
         <label class="input-group-text" for="join_request_invite_code">Guild link:</label>
         <input class="form-control" placeholder="Guild Code" type="text" id="join_request_invite_code"
           value="<%= join_url(@guild.invite_code) %>"
           data-disable-with="Copy"
           data-clipboard-target="source" readonly />
-        <button type="submit" value="Copy" class="btn btn-secondary" 
+        <button type="submit" value="Copy" class="btn btn-secondary rounded-end" 
           data-action="clipboard#copy">
           <i class="bi bi-clipboard-plus"></i> Copy
         </button>
@@ -31,11 +34,12 @@
     </div>
   </div>
 
-  <div class="">
-    <h5>How does this work?</h5>
-    <p>When your friend visits this link, they will be able to request to join your guild.</p>
-    <p>Guild Administators can approve or deny their request, which will appear on this page.
-      (They will need to create a GuildHall account if they don't already have one.)</p>
+  <div class="border rounded p-3">
+    <h5><i class="bi bi-info-circle"></i>&nbsp;How does this work?</h5>
+    <p>When your friend visits this link, they will be able to request to join your guild.
+      (They will need to create a GuildHall account if they don't already have one.)
+    </p>
+    <p><span class="fw-bold">Guild Administators</span> will approve or deny their request.</p>
   </div>
 </div>
 

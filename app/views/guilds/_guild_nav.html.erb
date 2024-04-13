@@ -8,7 +8,13 @@
                 Administration
                 <hr/>
             <ul class="nav flex-column">
-                <li><%= link_to "Join Requests", join_requests_path(guild), class: "nav-link" %></li>
+                <li class="position-relative">
+                    <%= link_to "Join Requests", join_requests_path(guild), class: "nav-link" %>
+                    <%# <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger">
+                      99+
+                      <span class="visually-hidden">unread messages</span>
+                    </span> %>
+                </li>
                 <li><%= link_to "Edit guild", edit_guild_path(guild), class: "nav-link" %></li>
                 <li><%= link_to "Delete guild", guild, class: "nav-link text-danger", method: :delete %></li>
             </ul>
