@@ -3,21 +3,23 @@
 <%= render "guild_members/members_summary", members:@guild.users %>
 
 <% if guild.id? && can_edit_guild? %>
-    <div class="card shadow rounded my-3">
-        <div class="alert alert-secondary mb-0" role="alert">
-                Administration
-                <hr/>
-            <ul class="nav flex-column">
-                <li class="position-relative">
-                    <%= link_to "Join Requests", join_requests_path(guild), class: "nav-link" %>
-                    <%# <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger">
-                      99+
+  <div class="card shadow rounded my-3">
+    <div class="alert alert-secondary mb-0" role="alert">
+      Administration
+      <hr/>
+      <ul class="nav flex-column">
+          <li class="position-relative">
+              <%= link_to "Join Requests", join_requests_path(guild), class: "nav-link" %>
+              <% if join_request_count > 0 %>
+                  <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger">
+                      <%= join_request_count %>
                       <span class="visually-hidden">unread messages</span>
-                    </span> %>
-                </li>
-                <li><%= link_to "Edit guild", edit_guild_path(guild), class: "nav-link" %></li>
-                <li><%= link_to "Delete guild", guild, class: "nav-link text-danger", method: :delete %></li>
-            </ul>
-        </div>
+                  </span>
+              <% end %>
+          </li>
+          <li><%= link_to "Edit guild", edit_guild_path(guild), class: "nav-link" %></li>
+          <li><%= link_to "Delete guild", guild, class: "nav-link text-danger", method: :delete %></li>
+      </ul>
     </div>
+  </div>
 <% end %>

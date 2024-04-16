@@ -13,3 +13,14 @@
       <%= link_to "create one", new_guild_path %>.</p>
   </div>
 </div>
+
+<% if current_user.join_requests.any? %>
+  <div class="mt-5">
+    <h3>Your existing requests</h3>
+    <ul class="list-group">
+      <% current_user.join_requests.each do |join_request| %>
+        <li class="list-group-item"><%= join_request.invite_code %>: <%= join_request.status.titleize %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

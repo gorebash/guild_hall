@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :guild_role, :can_edit_guild?
+  helper_method :guild_role, :can_edit_guild?, :join_request_count
   before_action :set_current_guild
 
   def guild_role
@@ -20,6 +20,17 @@ class ApplicationController < ActionController::Base
     return false if !user_signed_in?
     return false if !@guild.guild_members.find_by(user: current_user)
     return true
+  end
+
+  def join_request_count
+    return 0 if !user_signed_in?
+    return 0 if !@guild
+    
+    return session[:join_request_count] if session[:join_request_count]
+
+    join_count = @guild.join_requests.where(status: "pending").count
+    session[:join_request_count] = join_count
+    return join_count
   end
 
   protected

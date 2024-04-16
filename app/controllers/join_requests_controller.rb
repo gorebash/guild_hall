@@ -5,19 +5,17 @@ class JoinRequestsController < ApplicationController
 
   # GET /join_requests or /join_requests.json
   def index
-    @join_requests = JoinRequest.where guild_id:@guild.id, status: "pending"
+    @join_requests = JoinRequest.where guild_id:@guild.id, status: :pending
   end
 
   # GET /join_requests/new
   def new
     @join_request = JoinRequest.new
 
-    
-    # ** Make the invite code show up in the input ** #
-
-
     if params[:invite_code]
-      @join_request.invite_code = params[:invite_code]
+      token = params[:invite_code].upcase
+      @join_request.invite_code = token
+      @join_request.valid_code = true if find_guild_by_code token
     end
   end
 
@@ -30,7 +28,7 @@ class JoinRequestsController < ApplicationController
     
     @join_request = JoinRequest.new(join_request_params)
     @join_request.user = current_user
-    @join_request.guild = Guild.where(invite_code: @join_request.invite_code).take
+    @join_request.guild = find_guild_by_code @join_request.invite_code
     @join_request.invite_code = @join_request.invite_code.upcase
 
     if (@join_request.guild == nil)
@@ -109,5 +107,9 @@ class JoinRequestsController < ApplicationController
       flash[:danger] = message
       format.html { redirect_to guild_url(@guild) }
     end
+  end
+
+  def find_guild_by_code (invite_code)
+    Guild.where(invite_code: invite_code).take
   end
 end
