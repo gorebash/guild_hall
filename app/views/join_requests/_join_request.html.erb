@@ -1,12 +1,17 @@
 <div id="<%= dom_id join_request %>">
   <p>
-    <strong>User:</strong>
-    <%= join_request.user_id %>
+    <strong>Name:</strong>
+    <%= join_request.user.full_name %>
+  </p>
+
+  <p>
+    <strong>Username:</strong>
+    <%= join_request.user.username %>
   </p>
 
   <p>
     <strong>Guild:</strong>
-    <%= join_request.guild_id %>
+    <%= join_request.guild.name %>
   </p>
 
   <p>
@@ -16,7 +21,7 @@
 
   <p>
     <strong>Status:</strong>
-    <%= join_request.status %>
+    <%= join_request.status.titleize %>
   </p>
 
 </div>

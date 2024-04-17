@@ -1,31 +1,58 @@
-@import 'bootstrap';
-
-$navbar-brand-color: $indigo;
-$navbar-dark-brand-color: $indigo;
-$navbar-light-brand-color: $indigo;
-
-$theme-colors: (
-  primary: $indigo
-);
-
+@import "bootstrap";
 
 #message-container {
   height: 450px;
   overflow: auto;
 }
 
-.navbar .navbar-brand { }
-.profile-icon       { width:50px; height:50px; display:inline-block; border-radius:50%; object-fit: cover; }
-.profile-icon-lg    { width:150px; height:150px;}
-.profile-lg         { width:300px; height: 300px; display:inline-block; border-radius:50%; object-fit: cover; }
-h1.title            { }
+.navbar .navbar-brand {
+}
+.profile-icon {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.profile-icon-lg {
+  width: 150px;
+  height: 150px;
+}
+.profile-lg {
+  width: 300px;
+  height: 300px;
+  display: inline-block;
+  border-radius: 50%;
+  object-fit: cover;
+}
+h1.title {
+}
 
-.hero               { border-radius:1em; width:100%; height:340px; overflow:hidden; position:relative; 
-                      box-shadow: 0px 0px 4px 2px rgba(0,0,0,.25); }
-.hero img           { width:100%; height:100%; object-fit:cover; }
-.hero .title        { position:absolute; bottom:10%; left:5%; }
-.hero .title h1     { font-size:1.8em; text-shadow: black 0.0em 0.0em 0.14em }
-.hero-default       { 
-  background: rgb(238,174,202);
-  background: linear-gradient(45deg, rgba(238,174,202,1) 15%, rgba(148,187,233,1) 65%, rgba(212,255,246,1) 100%); 
+.hero {
+  border-radius: 1em;
+  width: 100%;
+  height: 340px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
+}
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero .title {
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+}
+.hero .title h1 {
+  font-size: 1.8em;
+  text-shadow: black 0em 0em 0.14em;
+}
+.hero-default {
+  //background: rgb(238,174,202);
+  //background: linear-gradient(45deg, rgba(238,174,202,1) 15%, rgba(148,187,233,1) 65%, rgba(212,255,246,1) 100%);
+  background-image: image-url("default-background2.jpg");
+  object-fit: cover;
 }

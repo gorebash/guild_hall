@@ -16,57 +16,55 @@
     <div class="container">
       <%= render 'layouts/messages' %>
     </div>
-    <div class="d-flex flex-column">
-      <div class="container mt-4 flex-grow-1" style="min-height:1030px">
+    <div class="container-md mt-4" style="min-height:1030px">
 
-        <% if !user_signed_in? %>
-          <%= yield %>
-        <% elsif @guild && @guild.id %>
-          <div class="hero hero-default">
-            <% if @guild.banner_image.attached? %>
-              <%= image_tag(@guild.banner_image) %>
-            <% end %>
-            <div class="title">
-              <h1><%= link_to @guild.name, guild_path(@guild), class: "navbar-brand mb-0 h1" %></h1>
-              <h4><%= @guild.description %></h4>
+      <% if !user_signed_in? %>
+        <%= yield %>
+      <% elsif @guild && @guild.id %>
+        <div class="hero hero-default">
+          <% if @guild.banner_image.attached? %>
+            <%= image_tag(@guild.banner_image) %>
+          <% end %>
+          <div class="title">
+            <h1><%= link_to @guild.name, guild_path(@guild), class: "navbar-brand mb-0 h1" %></h1>
+            <h4><%= @guild.description %></h4>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <div class="row mb-4">
+            <%= yield :title %>
+          </div>
+          <div class="row g-4">
+            <div class="col">
+              <%= yield %>
+            </div>
+            <div class="col-md-4">
+              <%= render "guilds/guild_nav", guild:@guild %>
             </div>
           </div>
+        </div>
 
-          <div class="mt-4">
-            <div class="row mb-4">
-              <%= yield :title %>
-            </div>
-            <div class="row g-4">
-              <div class="col">
-                <%= yield %>
-              </div>
-              <div class="col-md-4">
-                <%= render "guilds/guild_nav", guild:@guild %>
-              </div>
+      <% else %>
+        
+
+        <div class="mt-4">
+          <div class="row mb-4">
+            <h1 class="title"><%= yield :title %></h1>
+          </div>
+          <div class="row g-4">
+            <div class="col">
+              <%= yield %>
             </div>
           </div>
+        </div>
 
-        <% else %>
-          
+      <% end %>
 
-          <div class="mt-4">
-            <div class="row mb-4">
-              <h1 class="title"><%= yield :title %></h1>
-            </div>
-            <div class="row g-4">
-              <div class="col">
-                <%= yield %>
-              </div>
-            </div>
-          </div>
-
-        <% end %>
-
-      </div>
-    
-      <div class="mt-auto">
-        <%= render "layouts/site_footer" %>
-      </div>
+    </div>
+  
+    <div class="mt-auto">
+      <%= render "layouts/site_footer" %>
     </div>
   </body>
 </html>

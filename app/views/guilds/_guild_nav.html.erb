@@ -8,14 +8,16 @@
       Administration
       <hr/>
       <ul class="nav flex-column">
-          <li class="position-relative">
-              <%= link_to "Join Requests", join_requests_path(guild), class: "nav-link" %>
-              <% if join_request_count > 0 %>
-                  <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger">
-                      <%= join_request_count %>
-                      <span class="visually-hidden">unread messages</span>
-                  </span>
-              <% end %>
+          <li class="d-flex">
+            <div><%= link_to "Invites & Requests", join_requests_path(guild), class: "nav-link" %></div>
+            <% if join_request_count > 0 %>
+              <div class="">
+                <span class="badge rounded-pill bg-danger"> 
+                  <%= join_request_count %>
+                  <span class="visually-hidden">unread messages</span>
+                </span>
+              </div>
+            <% end %>
           </li>
           <li><%= link_to "Edit guild", edit_guild_path(guild), class: "nav-link" %></li>
           <li><%= link_to "Delete guild", guild, class: "nav-link text-danger", method: :delete %></li>

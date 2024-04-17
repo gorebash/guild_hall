@@ -47,9 +47,9 @@
 
 <% if can_edit_guild? %>
 <hr/>
-<h3 class="mt-5">Membership Requests</h3>
+<h1 class="py-3">Membership Requests</h1>
 <% @join_requests.each do |join_request| %>
-  <div class="card border shadow bg-body rounded mb-5">
+  <div class="card border shadow bg-body rounded mb-3">
     <div class="card-body">
       <%= render join_request %>
       <p>
