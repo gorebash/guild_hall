@@ -6,10 +6,10 @@
 
 
     <h1>Welcome to the Guild Hall</h1>
-    <h2>Come for the friends, stay for the friends</h2>
+    <h2 class="text-primary-emphasis">Come for the friends, stay for the friends</h2>
 
     <div class="row g-5 mt-3">
-      <div class="col-8">
+      <div class="col-12">
         <% if user_signed_in? && !@guild %>
 
           <div class="alert alert-primary mt-5">
@@ -39,7 +39,9 @@
         <div class="card border mb-3">
           <div class="card-body">
             <h3 class="card-title">What is Guild Hall?</h3>
-            <img src="" class="card-img-top" alt="image">
+            <div class="home-banner">
+              <%= image_tag("guild-hall.png") %>
+            </div>
             <hr/>
             <h5>Guild Hall is a place to build your local community online.</h5>
             <p class="card-text mt-3">
@@ -60,18 +62,6 @@
           </div>
         </div>
       </div>
-
-      <% if !user_signed_in? %> 
-        <div class="col-sm-4">
-          <div class="card border">
-            <div class="card-body">
-              <h5 class="card-title">Get Started</h5>
-              <p class="card-text">Create your account to get started</p>
-              <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-primary" %>
-            </div>
-          </div>
-        </div>
-      <% end %>
     </div>
 
 

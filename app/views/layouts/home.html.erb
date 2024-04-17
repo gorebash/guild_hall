@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark">
+  <head>
+    <title>Guild Hall</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <%= render 'layouts/navigation' %>
+    <div class="container">
+      <%= render 'layouts/messages' %>
+    </div>
+    <div class="container-md mt-4" style="min-height:1030px">
+
+      <% if !user_signed_in? %>
+        <%= yield %>
+      
+      <% elsif @guild && @guild.id %>
+        <div class="hero hero-default">
+          <% if @guild.banner_image.attached? %>
+            <%= image_tag(@guild.banner_image) %>
+          <% end %>
+          <div class="title">
+            <h1><%= link_to @guild.name, guild_path(@guild), class: "navbar-brand mb-0 h1" %></h1>
+            <h4><%= @guild.description %></h4>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <div class="row mb-4">
+            <%= yield :title %>
+          </div>
+          <div class="row g-4">
+            <div class="col">
+              <%= yield %>
+            </div>
+            
+          </div>
+        </div>
+
+      <% else %>
+        
+
+        <div class="mt-4">
+          <div class="row mb-4">
+            <h1 class="title"><%= yield :title %></h1>
+          </div>
+          <div class="row g-4">
+            <div class="col">
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+
+      <% end %>
+
+    </div>
+  
+    <div class="mt-auto">
+      <%= render "layouts/site_footer" %>
+    </div>
+  </body>
+</html>

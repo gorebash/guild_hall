@@ -1,30 +1,35 @@
 <%= form_with(model: guild) do |form| %>
-  <% if guild.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(guild.errors.count, "error") %> prohibited this guild from being saved:</h2>
+  
+  <div class="mb-5">
+    <% if guild.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(guild.errors.count, "error") %> prohibited this guild from being saved:</h2>
 
-      <ul>
-        <% guild.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% guild.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= form.label :name, class: "form-label" %>
+      <%= form.text_field :name, class: "form-control" %>
     </div>
-  <% end %>
 
-  <div class="mb-3">
-    <%= form.label :name, class: "form-label" %>
-    <%= form.text_field :name, class: "form-control" %>
+    <div class="mb-3">
+      <%= form.label :description, class: "form-label" %>
+      <%= form.text_field :description, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="mb-3">
-    <%= form.label :description, class: "form-label" %>
-    <%= form.text_field :description, class: "form-control" %>
-  </div>
+  <hr />
 
-  <hr/>
-
-  <div class="mb-3">
-    <p>Add an eye-popping banner image for your guild</p>
+  <div class="mb-5">
+    <p><span class="fw-bold">Add an eye-popping banner image for your guild</span>
+      <br/><span class="fst-italic">You can add one later or change it at any time.</span>
+    </p>
     <%= form.label :banner_image, class: "form-label" %><br />
     <%= form.file_field :banner_image, class: "form-control" %>
   </div>

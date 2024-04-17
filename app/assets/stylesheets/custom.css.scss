@@ -28,6 +28,14 @@
 h1.title {
 }
 
+.home-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow:hidden;
+  height: 36vh;
+}
+
 .hero {
   border-radius: 1em;
   width: 100%;
@@ -50,9 +58,11 @@ h1.title {
   font-size: 1.8em;
   text-shadow: black 0em 0em 0.14em;
 }
+.hero .title h4 {
+  font-size: 1.2em;
+  text-shadow: black 0em 0em 0.14em;
+}
 .hero-default {
-  //background: rgb(238,174,202);
-  //background: linear-gradient(45deg, rgba(238,174,202,1) 15%, rgba(148,187,233,1) 65%, rgba(212,255,246,1) 100%);
   background-image: image-url("default-background2.jpg");
   object-fit: cover;
 }
