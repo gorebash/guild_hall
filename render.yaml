@@ -1,21 +1,21 @@
 databases:
-  - name: mysite
-    databaseName: mysite
-    user: mysite
+  - name: guildhall-db
+    databaseName: guildhall-db
+    user: gorebash
     plan: free
 
 services:
   - type: web
-    name: mysite
+    name: guildhall-web
     runtime: ruby
-    plan: free
+    plan: starter
     buildCommand: "./bin/render-build.sh"
-    # preDeployCommand: "bundle exec rails db:migrate" # preDeployCommand only available on paid instance types
+    preDeployCommand: "bundle exec rails db:migrate"
     startCommand: "bundle exec rails server"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: mysite
+          name: guildhall-db
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
