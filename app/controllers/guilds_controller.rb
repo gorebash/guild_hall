@@ -1,5 +1,5 @@
 class GuildsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: %i[show]
   before_action :set_guild, only: %i[show edit update destroy]
 
   # GET /guilds or /guilds.json
