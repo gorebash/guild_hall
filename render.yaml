@@ -1,12 +1,12 @@
 databases:
-  - name: gh_db
-    databaseName: gh_db
+  - name: guildhall_db
+    databaseName: guildhall_db
     user: gorebash
     plan: starter
 
 services:
   - type: web
-    name: gh_web
+    name: guildhall
     runtime: ruby
     plan: starter
     buildCommand: "./bin/render-build.sh"
@@ -15,7 +15,7 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: gh_db
+          name: guildhall_db
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
