@@ -2,7 +2,7 @@ databases:
   - name: gh_db
     databaseName: gh_db
     user: gorebash
-    plan: free
+    plan: starter
 
 services:
   - type: web
