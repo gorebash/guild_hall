@@ -2,7 +2,7 @@
 
 <div class="card border shadow bg-body rounded mt-5" style="max-width:40rem;">
   <div class="card-header">
-    <h5><%= @join_user.full_name %> would like to join <%= @guild.name %></h5>
+    <h5><strong><%= @join_user.full_name.titleize %></strong> would like to join <%= @guild.name %></h5>
   </div>
 
   <div class="card-body">
@@ -51,18 +51,19 @@
   </div>
 
   <div class="card-footer">
-    <p class="card-text">Would you like to let them join the guild?</p>
+    <p class="card-text">Would you like to let <%= @join_user.first_name %> join the guild?
+      <br/><span class="fst-italic">(You can always revoke access later)</span></p>
     
     <div class="row g-3">
       <div class="col-auto">
-        <%= form_with model: @join_request, url: join_request_path do |form| %>
-          <%= form.hidden_field :status, value: "accepted" %>
+        <%= form_with model: @join_request do |form| %>
+          <%= form.hidden_field :status, value: :accepted %>
           <%= form.submit "Approve", class: "btn btn-primary" %>
         <% end %>
       </div>
       <div class="col-auto">
-        <%= form_with model: @join_request, url: join_request_path do |form| %>
-          <%= form.hidden_field :status, value: "declined" %>
+        <%= form_with model: @join_request do |form| %>
+          <%= form.hidden_field :status, value: :declined %>
           <%= form.submit "Ignore request", class: "btn" %>
         <% end %>
       </div>

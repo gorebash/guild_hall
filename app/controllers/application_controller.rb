@@ -37,7 +37,6 @@ class ApplicationController < ActionController::Base
 
   def set_current_guild
     if user_signed_in?
-      
       @guild = Guild.friendly.find(session[:guild_id]) if session[:guild_id]
       if !@guild
         memberships = GuildMember.where(user_id: current_user.id)

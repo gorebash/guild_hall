@@ -59,8 +59,8 @@ class JoinRequestsController < ApplicationController
     respond_to do |format|
       if @join_request.update(join_approval_params)
 
-        if (@join_request.status == "approved")
-          membership = GuildMember.new(:user_id, :guild_id)
+        if (@join_request.status == "accepted")
+          membership = GuildMember.new()
           membership.user = @join_request.user
           membership.guild = @join_request.guild
           
