@@ -37,7 +37,7 @@ class JoinRequestsController < ApplicationController
       return render :new, status: :unprocessable_entity
     end
 
-    if JoinRequest.exists? invite_code: @join_request.invite_code
+    if JoinRequest.exists? invite_code: @join_request.invite_code, user: current_user
       flash[:danger] = "You have already requested to join this guild."
       return render :new, status: :unprocessable_entity
     end

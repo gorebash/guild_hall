@@ -26,10 +26,10 @@ class ApplicationController < ActionController::Base
     return 0 if !user_signed_in?
     return 0 if !@guild
     
-    return session[:join_request_count] if session[:join_request_count]
+    #return session[:join_request_count] if session[:join_request_count]
 
     join_count = @guild.join_requests.where(status: "pending").count
-    session[:join_request_count] = join_count
+    #session[:join_request_count] = join_count
     return join_count
   end
 
