@@ -38,3 +38,4 @@
 *.drawio.dtmp
 
 node_modules
+rdbg_autoattach.json
