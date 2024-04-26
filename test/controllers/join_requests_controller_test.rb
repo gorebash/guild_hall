@@ -3,9 +3,9 @@ require "test_helper"
 class JoinRequestsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @join_request = join_requests(:one)
-    @user = users(:batman)
+    @user = users(:ironman)
 
-    sign_in (@user)
+    sign_in(@user)
   end
 
   test "should get index" do
@@ -19,17 +19,16 @@ class JoinRequestsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create join_request" do
-
     guild = guilds(:league_of_legends)
 
     assert_difference("JoinRequest.count") do
       post join_requests_url, params: { 
-        join_request: { invite_code: guild.invite_code, user_id: @user.id } 
+        join_request: { invite_code: guild.invite_code, user_id: @user.id }
       }
     end
     
     assert_equal "pending", JoinRequest.last.status
-    assert_redirected_to join_requests_url(JoinRequest.last)
+    assert_redirected_to new_join_request_path
   end
 
   test "should reject existing join_request" do
@@ -43,8 +42,6 @@ class JoinRequestsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should reject unknown invite codes" do
-    guild = guilds(:league_of_legends)
-
     assert_no_difference("JoinRequest.count") do
       post join_requests_url, params: { 
         join_request: { invite_code: "CODE00", user_id: @user.id } 
@@ -70,9 +67,10 @@ class JoinRequestsControllerTest < ActionDispatch::IntegrationTest
 
   test "should require edit permissions" do
     @guild = guilds(:justice)
-    sign_in users(:user_with_member_role)
+    @user = users(:user_with_member_role)
+    sign_in(@user)
 
-    get join_requests_url
+    get edit_join_request_path(join_requests(:one))
     assert_redirected_to guild_url(@guild)
   end
 

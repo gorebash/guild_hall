@@ -1,6 +1,6 @@
 class JoinRequestsController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_permission, only: %i[ update ]
+  before_action :require_permission, only: %i[ update edit ]
   before_action :set_join_request, only: %i[ show edit update destroy ]
   after_action :clear_session, only: %i[ create update ]
 
