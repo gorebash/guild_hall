@@ -11,6 +11,9 @@ users = User.create([
   { email: "brent.gore@gmail.com", username: "heavymetal", first_name: "Brent", last_name: "Gore", birth_date: "1980-01-01", password: "pass123" },
   { email: "brent1@example.com", username: "brentclone1", first_name: "Clone", last_name: "Trooper1", birth_date: "2010-01-01", password: "pass123" },
   { email: "brent2@example.com", username: "brentclone2", first_name: "Clone", last_name: "Trooper2", birth_date: "2010-01-01", password: "pass123" },
+  { email: "brent3@example.com", username: "brentclone3", first_name: "Clone", last_name: "Trooper3", birth_date: "2010-01-01", password: "pass123" },
+  { email: "brent4@example.com", username: "brentclone4", first_name: "Clone", last_name: "Trooper4", birth_date: "2010-01-01", password: "pass123" },
+  { email: "brent5@example.com", username: "brentclone5", first_name: "Clone", last_name: "Trooper5", birth_date: "2010-01-01", password: "pass123" },
 ])
 
 guilds = Guild.create([
@@ -21,10 +24,14 @@ guilds = Guild.create([
 
 GuildMember.create([
   { user_id: users[0].id, guild_id: guilds[0].id, role: :owner },
+  { user_id: users[1].id, guild_id: guilds[0].id, role: :admin },
+  { user_id: users[2].id, guild_id: guilds[0].id, role: :member },
+  { user_id: users[3].id, guild_id: guilds[0].id, role: :member },
+  { user_id: users[4].id, guild_id: guilds[0].id, role: :member },
+  
   { user_id: users[0].id, guild_id: guilds[1].id, role: :member },
   { user_id: users[1].id, guild_id: guilds[1].id, role: :owner },
   { user_id: users[1].id, guild_id: guilds[2].id, role: :admin },
-  { user_id: users[2].id, guild_id: guilds[0].id, role: :member },
 ])
 
 JoinRequest.create([

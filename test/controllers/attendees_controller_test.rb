@@ -3,7 +3,7 @@ require "test_helper"
 class AttendeesControllerTest < ActionDispatch::IntegrationTest
   test "should create attendee for event" do
     sign_in users(:batman)
-    guild_event = guild_events(:event1)
+    guild_event = guild_events(:event2)
 
     assert_difference "Attendee.count" do
       post guild_event_attendees_url(guild_event.id), params: { 
