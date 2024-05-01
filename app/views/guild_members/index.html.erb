@@ -11,8 +11,8 @@
       
         
       <h2 class="card-title flex-grow-1 text-center">
-        <% if current_user.avatar.attached? %>
-          <%= image_tag(current_user.avatar, class: "profile-icon profile-icon-lg") %>
+        <% if user.avatar.attached? %>
+          <%= image_tag(user.avatar, class: "profile-icon profile-icon-lg") %>
           <br/>
         <% end %>
         

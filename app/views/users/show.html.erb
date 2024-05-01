@@ -6,9 +6,9 @@
 
 <div class="mb-5">
   <h1 class="mt-3 text-center text-primary"><%= @user.username %>
-    <% if current_user.avatar.attached? %>
+    <% if @user.avatar.attached? %>
       <p class="text-center mt-3">
-        <%= image_tag(current_user.avatar, class:"object-fit-fill border rounded profile-lg") %>
+        <%= image_tag(@user.avatar, class:"object-fit-fill border rounded profile-lg") %>
       </p>
     <% end %>
   </h1>

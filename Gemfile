@@ -74,3 +74,4 @@ gem 'validates_timeliness', '~> 7.0.0.beta1'
 gem 'friendly_id', '~> 5.5.0'
 gem "image_processing", "~> 1.2"
 #gem "mini_magick"
+gem 'azure-storage-blob', '~> 2.0'

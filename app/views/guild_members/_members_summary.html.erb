@@ -8,8 +8,8 @@
       <% members.each do |user| %>
         
         <div class="text-center">
-          <% if current_user.avatar.attached? %>
-            <%= image_tag(current_user.avatar, class: "profile-icon") %>
+          <% if user.avatar.attached? %>
+            <%= image_tag(user.avatar, class: "profile-icon") %>
             <br/>
           <% end %>
           <span class="mx-2">

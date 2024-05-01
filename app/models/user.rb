@@ -28,7 +28,7 @@ class User < ApplicationRecord
   
   validates :last_name,
             presence: true,
-            length: { minimum: 2, maximum: 35 }
+            length: { minimum: 2, maximum: 50 }
 
   has_one_attached :avatar
   validate :image_format
@@ -42,8 +42,8 @@ class User < ApplicationRecord
   def image_format
     return unless avatar.attached?
     if avatar.blob.content_type.start_with? 'image/'
-      if avatar.blob.byte_size > 5.megabytes
-        errors.add(:avatar, 'size needs to be less than 5MB')
+      if avatar.blob.byte_size > 1.megabytes
+        errors.add(:avatar, 'size needs to be less than 1MB')
         avatar.purge
       end
       else
