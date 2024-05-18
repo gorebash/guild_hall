@@ -1,0 +1,16 @@
+
+###
+
+POST https://fcm.googleapis.com/v1/projects/guild-hall-200d4/messages:send
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "message": {
+    "token": "test-device-token",
+    "notification": {
+      "title": "Message from Postman",
+      "body": "This is a test message."
+    }
+  }
+}
