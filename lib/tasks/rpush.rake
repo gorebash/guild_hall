@@ -1,3 +1,8 @@
+
+# To create the rpush apps run:
+# $ bundle exec rake rpush:android_app
+# $ bundle exec rake rpush:ios_app
+
 namespace :rpush do
   desc "Create Rpush android app"
   task android_app: [:environment] do

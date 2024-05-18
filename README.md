@@ -16,6 +16,14 @@ Even better, there are **no likes and followers** here! Just friends and fun!
 - Rails version 7.0.8
 - PostgreSql
 
+### To create the rpush apps run:
+`$ bundle exec rake rpush:android_app`
+`$ bundle exec rake rpush:ios_app`
+
+Useful checks with rails console:
+`Rpush::Gcm::App.all`
+`Rpush::Notification.all`
+
 # Local Startup
 
 - `bundle install`
