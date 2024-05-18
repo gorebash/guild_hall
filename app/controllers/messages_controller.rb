@@ -12,6 +12,13 @@ class MessagesController < ApplicationController
     message.guild = @guild
 
     if message.save
+
+      ##
+      current_user.send_notification_to_user("New Guild Message", "Someone mentioned you!")
+      
+      ##
+      
+
       respond_to do |format|
         format.html { redirect_to guilds_path }
         format.turbo_stream

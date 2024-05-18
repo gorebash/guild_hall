@@ -38,6 +38,17 @@ class User < ApplicationRecord
     "#{first_name.titleize} #{last_name.titleize}"
   end
 
+  def send_notification_to_user(title, description)
+    payload = {payload: { title: title , description: description } }
+    android_condition = "device_type = 'android' and user_id = #{id.to_i}"
+
+    register_device(android_condition)
+    send_notification(payload, android_condition, 'android')
+    
+    #ios_condition = "device_type = 'ios' and user_id = #{id.to_i}"
+    #send_notification(payload, ios_condition, 'ios')
+  end
+
   private
   
   def image_format
@@ -51,6 +62,26 @@ class User < ApplicationRecord
         avatar.purge
         errors.add(:avatar, 'needs to be an image')
       end
+  end
+
+  def send_notification(payload, condition, device_type)
+    tokens = UserDevice
+      .where(condition)
+      .pluck(:token)
+      .compact 
+      UserDevice.send_notification(tokens, payload, device_type)
+  end
+
+  # this needs to be moved to user registration or something
+  # replace condition with userId and token props
+  def register_device (condition)
+    registered = UserDevice
+      .where(condition)
+      .any?
+
+    if !registered
+      UserDevice.create(user_id: id, token: "token_001", device_type: "android")
+    end 
   end
 
 end
