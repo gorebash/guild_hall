@@ -1,0 +1,29 @@
+
+
+
+
+###
+# Docs: https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages/send
+#
+POST https://firebase.googleapis.com/v1/projects/guild-hall-200d4/messages:send
+
+{
+  "validate_only": true,
+  "message": {
+    "topic": "guildhall_all", 
+    "data": {
+      "payload": {
+        "data": {
+          "id": 1
+        }
+      }
+    },
+    "notification": {
+      "title": "notification.title_th",
+      "body": "notification.body_th",
+    },
+    "fcm_options": {
+      "analytics_label": "testing"
+    }
+  }
+}
