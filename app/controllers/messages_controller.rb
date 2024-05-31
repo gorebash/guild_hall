@@ -42,10 +42,13 @@ class MessagesController < ApplicationController
       'guild-hall-200d4'
     )
     message = {
-      'topic': "guildhall_all", 
+      #'topic': "guild_hall_global", 
+
       
       # OR token if you want to send to a specific device
-      # 'token': "000iddqd",
+      'token': "token00",
+
+
       'data': {
         payload: {
           data: {

@@ -15,13 +15,14 @@ Rails.application.routes.draw do
     get 'message', to: 'messages#new'
     post 'message', to: 'messages#create'
   end
-
+  
   # maybe this goes away
   post 'guild_events/:id/attend', to: 'attendees#create', as: 'attend_event'
-
+  
   get 'home', to:'home#index'
   get 'members', to:'guild_members#index'
   get 'join/:invite_code', to:'join_requests#new', as:'join'
+  get 'push_subscribers/index'
 
   mount ActionCable.server, at: '/cable'
 end
