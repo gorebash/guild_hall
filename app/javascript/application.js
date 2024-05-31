@@ -6,4 +6,3 @@ import "bootstrap";
 import "trix";
 import "@rails/actiontext";
 import "./webpush/registration.js";
-import "./webpush/serviceworker.js";
