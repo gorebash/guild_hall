@@ -25,18 +25,25 @@ function onReady() {
         userVisibleOnly: true,
         applicationServerKey: window.vapidPublicKey,
       })
-      .then(function (sub) {
-        console.log({ sub });
+      .then(async function (sub) {
+        const data = await fetch("/push_subscribers", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(sub),
+        }).then((r) => r.json());
       });
 
-    serviceWorkerRegistration.pushManager
-      .getSubscription()
-      .then((subscription) => {
-        $.post("/push", {
-          subscription: subscription.toJSON(),
-          message: "You clicked a button!",
-        });
-      });
+    // serviceWorkerRegistration.pushManager
+    //   .getSubscription()
+    //   .then((subscription) => {
+    //     // $.post("/push", {
+    //     //   subscription: subscription.toJSON(),
+    //     //   message: "You clicked a button!",
+    //     // });
+    //     console.log(subscription.toJSON());
+    //   });
   });
 }
 

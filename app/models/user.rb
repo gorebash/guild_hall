@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :join_requests
   has_many :guild_events
   has_many :attendees
+  has_many :push_subscribers
 
   validates :username,
             presence: true,

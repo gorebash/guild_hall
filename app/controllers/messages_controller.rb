@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
 
     if message.save
 
-      if !send_notification message.body
+      if !send_webpush message.body
         flash.now[:error] = 'Could not make the notification :('
       end
 
@@ -33,6 +33,25 @@ class MessagesController < ApplicationController
     params.require(:message).permit(:body)
   end
 
+  def send_webpush(messagebody)
+    sub = current_user.push_subscribers.first
+
+    # don't actually have webpush installed
+
+    # this is all cute but doesn't go through fcm app instance
+    Webpush.payload_send(
+      message: messagebody,
+      endpoint: sub.endpoint,
+      p256dh: sub.p256dh_key,
+      auth: sub.auth_key,
+      vapid: {
+        subject: "mailto:sender@example.com",
+        public_key: Rails.application.credentials.dig(:webpush, :public_key),
+        private_key: Rails.application.credentials.dig(:webpush, :private_key)
+      }
+    )
+  end
+
   def send_notification(messageBody)
     auth_key = Rails.application.credentials.FCM_AUTH_KEY
 
@@ -46,7 +65,7 @@ class MessagesController < ApplicationController
 
       
       # OR token if you want to send to a specific device
-      'token': "token00",
+      'token': current_user.push_subscribers.first.endpoint,
 
 
       'data': {

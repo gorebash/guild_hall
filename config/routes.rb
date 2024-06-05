@@ -22,7 +22,8 @@ Rails.application.routes.draw do
   get 'home', to:'home#index'
   get 'members', to:'guild_members#index'
   get 'join/:invite_code', to:'join_requests#new', as:'join'
-  get 'push_subscribers/index'
+  
+  post 'push_subscribers', to: 'push_subscribers#create'
 
   mount ActionCable.server, at: '/cable'
 end
