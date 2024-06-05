@@ -1,5 +1,3 @@
-console.log("registration init...");
-
 if (navigator.serviceWorker) {
   navigator.serviceWorker
     .register("/serviceworker.js", { scope: "./" })
@@ -22,10 +20,23 @@ function onReady() {
   // When serviceWorker is supported, installed, and activated,
   // subscribe the pushManager property with the vapidPublicKey
   navigator.serviceWorker.ready.then((serviceWorkerRegistration) => {
-    serviceWorkerRegistration.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: window.vapidPublicKey,
-    });
+    serviceWorkerRegistration.pushManager
+      .subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: window.vapidPublicKey,
+      })
+      .then(function (sub) {
+        console.log({ sub });
+      });
+
+    serviceWorkerRegistration.pushManager
+      .getSubscription()
+      .then((subscription) => {
+        $.post("/push", {
+          subscription: subscription.toJSON(),
+          message: "You clicked a button!",
+        });
+      });
   });
 }
 

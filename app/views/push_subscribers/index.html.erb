@@ -2,6 +2,3 @@
 <p>Find me in app/views/push_subscribers/index.html.erb</p>
 
 
-<script>
-  window.vapidPublicKey = new Uint8Array(<%= Base64.urlsafe_decode64(Rails.application.credentials.dig(:webpush, :public_key)).bytes %>);
-</script>
