@@ -36,16 +36,13 @@ class MessagesController < ApplicationController
   def send_webpush(messagebody)
     sub = current_user.push_subscribers.first
 
-    # don't actually have webpush installed
-
-    # this is all cute but doesn't go through fcm app instance
     Webpush.payload_send(
       message: messagebody,
       endpoint: sub.endpoint,
       p256dh: sub.p256dh_key,
       auth: sub.auth_key,
       vapid: {
-        subject: "mailto:sender@example.com",
+        subject: "mailto:firebase-adminsdk-g4trl@guild-hall-200d4.iam.gserviceaccount.com",
         public_key: Rails.application.credentials.dig(:webpush, :public_key),
         private_key: Rails.application.credentials.dig(:webpush, :private_key)
       }

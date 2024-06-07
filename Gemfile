@@ -77,3 +77,4 @@ gem "image_processing", "~> 1.2"
 gem 'azure-storage-blob'
 gem 'fcm'
 gem 'serviceworker-rails'
+gem 'webpush'
