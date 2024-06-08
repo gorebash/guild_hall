@@ -36,7 +36,7 @@ class MessagesController < ApplicationController
   def send_webpush(messagebody)
     sub = current_user.push_subscribers.first
 
-    Webpush.payload_send(
+    WebPush.payload_send(
       message: messagebody,
       endpoint: sub.endpoint,
       p256dh: sub.p256dh_key,

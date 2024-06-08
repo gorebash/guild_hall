@@ -1,11 +1,10 @@
-import { Controller } from "@hotwired/stimulus"
-import * as bootstrap from "bootstrap"
+import { Controller } from "@hotwired/stimulus";
+import * as bootstrap from "bootstrap";
 
 export default class extends Controller {
   //static targets = [ "source" ];
 
   initialize() {
-
     // Let's check if the browser supports notifications
     if (!("Notification" in window)) {
       console.error("This browser does not support desktop notification");
@@ -29,7 +28,7 @@ export default class extends Controller {
 
   register() {
     console.log("Requesting permission...");
-    
+
     if (navigator.serviceWorker) {
       navigator.serviceWorker
         .register("/serviceworker.js", { scope: "./" })
@@ -46,8 +45,9 @@ export default class extends Controller {
   }
 
   onPermissionGranted() {
-
     console.log("[Companion]", "Service worker registered!");
+
+    // todo: add a fetch request to get the public key.
 
     // When serviceWorker is supported, installed, and activated,
     // subscribe the pushManager property with the vapidPublicKey
