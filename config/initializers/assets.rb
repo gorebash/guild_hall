@@ -13,5 +13,5 @@ Rails.application.config.assets.version = "1.0"
 
 
 Rails.application.configure do
-  config.assets.precompile += %w[serviceworker.js manifest.json]
+  config.assets.precompile += %w[serviceworker.js manifest.json firebase-messaging-sw.js]
 end

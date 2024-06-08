@@ -5,3 +5,5 @@ import "channels";
 import "bootstrap";
 import "trix";
 import "@rails/actiontext";
+import "@firebase/app";
+import "@firebase/messaging";

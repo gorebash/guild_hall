@@ -1,28 +1,13 @@
 import { Controller } from "@hotwired/stimulus";
-import * as bootstrap from "bootstrap";
 
 export default class extends Controller {
-  //static targets = [ "source" ];
-
   initialize() {
-    // Let's check if the browser supports notifications
     if (!("Notification" in window)) {
       console.error("This browser does not support desktop notification");
-    }
-
-    // Let's check whether notification permissions have already been granted
-    else if (Notification.permission === "granted") {
+    } else if (Notification.permission === "granted") {
       console.log("Permission to receive notifications has been granted");
-    }
-
-    // Otherwise, we need to ask the user for permission
-    else if (Notification.permission !== "denied") {
-      Notification.requestPermission(function (permission) {
-        // If the user accepts, let's create a notification
-        if (permission === "granted") {
-          console.log("Permission to receive notifications has been granted");
-        }
-      });
+    } else if (Notification.permission !== "denied") {
+      Notification.requestPermission().then(this.requestToken);
     }
   }
 
@@ -58,6 +43,8 @@ export default class extends Controller {
           applicationServerKey: window.vapidPublicKey,
         })
         .then(async function (sub) {
+          //var token = await this.requestToken();
+
           const data = await fetch("/push_subscribers", {
             method: "POST",
             headers: {
