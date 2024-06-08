@@ -7,3 +7,4 @@ import "trix";
 import "@rails/actiontext";
 import "@firebase/app";
 import "@firebase/messaging";
+import "firebase/messaging/sw";

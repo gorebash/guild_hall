@@ -43,8 +43,6 @@ export default class extends Controller {
           applicationServerKey: window.vapidPublicKey,
         })
         .then(async function (sub) {
-          //var token = await this.requestToken();
-
           const data = await fetch("/push_subscribers", {
             method: "POST",
             headers: {

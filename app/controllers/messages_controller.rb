@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
 
     if message.save
 
-      if !send_webpush message.body
+      if !send_notification message.body
         flash.now[:error] = 'Could not make the notification :('
       end
 
@@ -33,21 +33,21 @@ class MessagesController < ApplicationController
     params.require(:message).permit(:body)
   end
 
-  def send_webpush(messagebody)
-    sub = current_user.push_subscribers.first
+  # def send_webpush(messagebody)
+  #   sub = current_user.push_subscribers.first
 
-    WebPush.payload_send(
-      message: messagebody,
-      endpoint: sub.endpoint,
-      p256dh: sub.p256dh_key,
-      auth: sub.auth_key,
-      vapid: {
-        subject: "mailto:firebase-adminsdk-g4trl@guild-hall-200d4.iam.gserviceaccount.com",
-        public_key: Rails.application.credentials.dig(:webpush, :public_key),
-        private_key: Rails.application.credentials.dig(:webpush, :private_key)
-      }
-    )
-  end
+  #   WebPush.payload_send(
+  #     message: messagebody,
+  #     endpoint: sub.endpoint,
+  #     p256dh: sub.p256dh_key,
+  #     auth: sub.auth_key,
+  #     vapid: {
+  #       subject: "mailto:firebase-adminsdk-g4trl@guild-hall-200d4.iam.gserviceaccount.com",
+  #       public_key: Rails.application.credentials.dig(:webpush, :public_key),
+  #       private_key: Rails.application.credentials.dig(:webpush, :private_key)
+  #     }
+  #   )
+  # end
 
   def send_notification(messageBody)
     auth_key = Rails.application.credentials.FCM_AUTH_KEY
@@ -62,7 +62,7 @@ class MessagesController < ApplicationController
 
       
       # OR token if you want to send to a specific device
-      'token': current_user.push_subscribers.first.endpoint,
+      'token': current_user.push_subscribers.first.device_token,
 
 
       'data': {
@@ -86,7 +86,8 @@ class MessagesController < ApplicationController
       #   }
       # },
       'fcm_options': {
-        analytics_label: 'testing'
+        analytics_label: 'testing',
+        link: "https://guild-hall.org"
       }
     }
 

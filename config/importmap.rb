@@ -24,3 +24,5 @@ pin "@firebase/logger", to: "@firebase--logger.js" # @0.4.2
 pin "@firebase/messaging", to: "@firebase--messaging.js" # @0.12.9
 pin "@firebase/util", to: "@firebase--util.js" # @1.9.6
 pin "idb" # @8.0.0
+pin "firebase/messaging/sw", to: "firebase--messaging--sw.js" # @10.12.2
+pin "@firebase/messaging/sw", to: "@firebase--messaging--sw.js" # @0.12.9
