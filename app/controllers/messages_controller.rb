@@ -62,7 +62,7 @@ class MessagesController < ApplicationController
 
       
       # OR token if you want to send to a specific device
-      'token': current_user.push_subscribers.first.device_token,
+      'token': current_user.push_subscribers.last.device_token,
 
 
       'data': {
