@@ -23,39 +23,47 @@ export default class extends Controller {
   }
 
   register() {
-    console.log("Requesting permission...");
-    Notification.requestPermission().then((permission) => {
-      if (permission === "granted") {
-        console.log("Notification permission granted.");
+    let subscription = {};
 
-        getToken(this.#messaging, { vapidKey: window.vapidPublicKey })
-          .then(async (token) => {
-            if (token) {
-              console.log("token retrieved ", token);
-              const data = await fetch("/push_subscribers", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ token: token }),
-              }).then((r) => r.json());
-            } else {
-              // Show permission request UI
-              console.log(
-                "No registration token available. Request permission to generate one.",
-              );
-              // ...
-            }
-          })
-          .catch((err) => {
-            console.log("An error occurred while retrieving token. ", err);
-            // ...
-          });
-      }
+    Notification.requestPermission()
+      .then((permission) => this.registerSw())
+      .then(() => navigator.serviceWorker.ready)
+      .then((reg) => this.swReady(reg))
+      .then((sub) => (subscription = sub))
+      .then(() =>
+        getToken(this.#messaging, { vapidKey: window.vapidPublicKey }),
+      )
+      .then((token) => this.savePushSubscription(subscription, token))
+      .then(() => console.log("Push subscription successfully registered."))
+      .then(() => this.listen())
+      .catch((err) => console.log("error: ", err));
+  }
+
+  registerSw() {
+    return navigator.serviceWorker.register("/serviceworker.js", {
+      scope: "./",
+    });
+  }
+
+  swReady(serviceWorkerRegistration) {
+    return serviceWorkerRegistration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: window.vapidPublicKey,
+    });
+  }
+
+  async savePushSubscription(sub, token) {
+    return fetch("/push_subscribers", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ sub: sub, token: token }),
     });
   }
 
   listen() {
+    console.log("Listening for messages...");
     onMessage(this.#messaging, (payload) => {
       console.log("Message received. ", payload);
       // ...

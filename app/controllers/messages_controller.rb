@@ -13,9 +13,8 @@ class MessagesController < ApplicationController
 
     if message.save
 
-      if !send_notification message.body
-        flash.now[:error] = 'Could not make the notification :('
-      end
+      send_webpush message.body
+      send_fcm message.body
 
       respond_to do |format|
         format.html { redirect_to guilds_path }
@@ -33,23 +32,23 @@ class MessagesController < ApplicationController
     params.require(:message).permit(:body)
   end
 
-  # def send_webpush(messagebody)
-  #   sub = current_user.push_subscribers.first
+  def send_webpush(messagebody)
+    sub = current_user.push_subscribers.last
 
-  #   WebPush.payload_send(
-  #     message: messagebody,
-  #     endpoint: sub.endpoint,
-  #     p256dh: sub.p256dh_key,
-  #     auth: sub.auth_key,
-  #     vapid: {
-  #       subject: "mailto:firebase-adminsdk-g4trl@guild-hall-200d4.iam.gserviceaccount.com",
-  #       public_key: Rails.application.credentials.dig(:webpush, :public_key),
-  #       private_key: Rails.application.credentials.dig(:webpush, :private_key)
-  #     }
-  #   )
-  # end
+    WebPush.payload_send(
+      message: messagebody,
+      endpoint: sub.endpoint,
+      p256dh: sub.p256dh_key,
+      auth: sub.auth_key,
+      vapid: {
+        subject: "mailto:firebase-adminsdk-g4trl@guild-hall-200d4.iam.gserviceaccount.com",
+        public_key: Rails.application.credentials.dig(:webpush, :public_key),
+        private_key: Rails.application.credentials.dig(:webpush, :private_key)
+      }
+    )
+  end
 
-  def send_notification(messageBody)
+  def send_fcm(messageBody)
     auth_key = Rails.application.credentials.FCM_AUTH_KEY
 
     fcm = FCM.new(

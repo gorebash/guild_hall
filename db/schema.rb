@@ -131,6 +131,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_05_014210) do
 
   create_table "push_subscribers", force: :cascade do |t|
     t.bigint "user_id", null: false
+    t.string "endpoint"
+    t.string "auth_key"
+    t.string "p256dh_key"
     t.string "device_token", null: false
     t.string "device_type", null: false
     t.datetime "created_at", null: false
