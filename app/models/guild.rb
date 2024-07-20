@@ -17,6 +17,15 @@ class Guild < ApplicationRecord
     has_one_attached :banner_image
     validate :image_format
 
+    def notify(from_user, message)
+        messenger = PushMessenger::Messenger.new
+        
+        send_to_users = self.users.joins(:push_subscribers).where.not(id: from_user.id)
+        send_to_users.each do |user|
+            messenger.deliver(user, message)
+        end
+    end
+
     private
 
     def generate_unique_token(length)

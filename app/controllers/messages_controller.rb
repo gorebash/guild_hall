@@ -13,8 +13,7 @@ class MessagesController < ApplicationController
 
     if message.save
 
-      send_webpush message.body
-      send_fcm message.body
+      @guild.notify(current_user, message.body)
 
       respond_to do |format|
         format.html { redirect_to guilds_path }
@@ -30,59 +29,5 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:body)
-  end
-
-  def send_webpush(messagebody)
-    PushMessenger::GuildNotification.send(current_user, messagebody)
-  end
-
-  def send_fcm(messageBody)
-    auth_key = Rails.application.credentials.FCM_AUTH_KEY
-
-    fcm = FCM.new(
-      auth_key,
-      '/etc/secrets/firebase-credentials.json',
-      'guild-hall-200d4'
-    )
-    message = {
-      #'topic': "guild_hall_global", 
-
-      
-      # OR token if you want to send to a specific device
-      'token': current_user.push_subscribers.last.device_token,
-
-
-      'data': {
-        payload: {
-          data: {
-            id: 1
-          }
-        }.to_json
-      },
-      'notification': {
-        title: 'notification.title_th',
-        body: 'notification.body_th',
-      },
-      'android': {},
-      # 'apns': {
-      #   payload: {
-      #     aps: {
-      #       sound: "default",
-      #       category: "#{Time.zone.now.to_i}"
-      #     }
-      #   }
-      # },
-      'fcm_options': {
-        analytics_label: 'testing',
-        link: "https://guild-hall.org"
-      }
-    }
-
-    resp = fcm.send_v1(message)
-    if !resp
-      false
-    end
-
-    true
   end
 end
