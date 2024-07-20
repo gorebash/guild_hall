@@ -66,7 +66,7 @@ export default class extends Controller {
     console.log("Listening for messages...");
     onMessage(this.#messaging, (payload) => {
       console.log("Message received. ", payload);
-      // ...
+      alert("Firebase message received!" + payload);
     });
   }
 }

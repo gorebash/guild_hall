@@ -33,19 +33,7 @@ class MessagesController < ApplicationController
   end
 
   def send_webpush(messagebody)
-    sub = current_user.push_subscribers.last
-
-    WebPush.payload_send(
-      message: messagebody,
-      endpoint: sub.endpoint,
-      p256dh: sub.p256dh_key,
-      auth: sub.auth_key,
-      vapid: {
-        subject: "mailto:firebase-adminsdk-g4trl@guild-hall-200d4.iam.gserviceaccount.com",
-        public_key: Rails.application.credentials.dig(:webpush, :public_key),
-        private_key: Rails.application.credentials.dig(:webpush, :private_key)
-      }
-    )
+    PushMessenger::GuildNotification.send(current_user, messagebody)
   end
 
   def send_fcm(messageBody)
