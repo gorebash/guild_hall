@@ -30,6 +30,12 @@
     <span class="fw-bold">Joined:</span>
     <%= time_ago_in_words(@user.created_at) %> ago
   </div>
+  <% if @user.bio.present? %>
+    <div class="mb-3">
+      <span class="fw-bold">Bio:</span>
+      <span class="fst-italic"><%= @user.bio %></span>
+    </div>
+  <% end %>
 </div>
 
 
