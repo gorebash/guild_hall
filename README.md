@@ -19,6 +19,7 @@ Even better, there are **no likes and followers** here! Just friends and fun!
 # Local Startup
 
 - `bundle install`
+- `rails db:setup`
 - `rails db:migrate`
 - `rails s`
 
